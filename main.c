@@ -6,11 +6,18 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/03/03 14:10:13 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/10/17 11:12:10 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+int end(int x,void *s)
+{
+	mlx_destroy_window(g_ptr,g_win);
+	exit(0);
+}
+
 int try(int x,void *s)
 {
 	//w = 13
@@ -35,24 +42,33 @@ int try(int x,void *s)
 	{
 		g_tool.x += 30;
 	}
+	if (x == 53)
+		end(x,s);
 	ft_square(g_ptr,g_win);	
 	return (0);
 }
-int main()
+void looping()
 {
-	ft_gnl();
-	g_tool.xa = 800;
-	g_tool.ya = 500;
 	int i;
 	int j;
 	int k;
+
+	g_tool.xa = 800;
+	g_tool.ya = 500;
 	init();
 	g_ptr = mlx_init();
 	g_win = mlx_new_window(g_ptr, g_tool.xa, g_tool.ya, "image");
 	g_image = mlx_new_image(g_ptr,g_tool.xa,g_tool.ya);
 	g_screen = (int *)mlx_get_data_addr(g_image,&i,&j,&k);
-	mlx_hook(g_win,2,1,try,(void *)0);
+	mlx_hook(g_win,2,1,try,NULL);
+	mlx_hook(g_win,17,0,end,NULL);
+	mlx_clear_window(g_ptr,g_win);
 	ft_square(g_ptr,g_win);
 	mlx_loop(g_ptr);
+}
+int main()
+{		
+	ft_gnl();
+	looping();
 	return(0);
 }

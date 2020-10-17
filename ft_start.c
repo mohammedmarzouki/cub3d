@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/03/03 14:03:03 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/10/15 16:30:43 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 }*/
 void init(void)
 {
-    g_tool.x = 0;
-    g_tool.y = 0;
+    g_tool.x = 20;
+    g_tool.y = 30;
 }
 void ft_square(void *ptr,void *win)
 {
@@ -28,13 +28,13 @@ void ft_square(void *ptr,void *win)
 	int b = 0;
 	int f;
 
-	mlx_clear_window(g_ptr,g_win);
+	
 
-	a = g_tool.x;
-	b = g_tool.y;
-	k = g_tool.y;
-	g_tool.a = (g_tool.x + 50);
-	g_tool.b = (g_tool.y + 50);
+	a = g_tool.x;//the first point in x range
+	b = g_tool.y;//the first point in y range
+	k = g_tool.y;//k to reset the value
+	g_tool.a = (g_tool.x + 50);//last point in the square
+	g_tool.b = (g_tool.y + 50);//last point in the square
 	while(a < g_tool.a)
 	{
 		b = k;
@@ -43,6 +43,41 @@ void ft_square(void *ptr,void *win)
 			f = (b * g_tool.xa + a);
 			g_screen[f] = 0xFFBBAA;
 			//mlx_pixel_put(g_ptr, g_win, a, b, 0xFFBBAA);
+			b++;
+		}
+		a++;
+	}
+	mlx_put_image_to_window(g_ptr, g_win, g_image, 0 ,0 );
+//	mlx_clear_window(g_ptr, g_win);
+	g_image = mlx_new_image(g_ptr,g_tool.xa,g_tool.ya);
+	g_screen = (int *)mlx_get_data_addr(g_image,&b,&a,&k);
+}
+
+void ft_circle(void *ptr,void *win)
+{
+	int k;
+	int a ;
+	int b ;
+	int f;
+	int r = 50;
+
+	
+
+	a = g_tool.x;
+	b = k = g_tool.y;
+	g_tool.a = (g_tool.x + 50);
+	g_tool.b = (g_tool.y + 50);
+	while(a < g_tool.xa)
+	{
+		b = k;
+		while(b < g_tool.ya)
+		{
+			
+				{
+					f = (b * g_tool.xa + a);//index= current y pixel times* the last x pixel plus+ the current x pixel
+					g_screen[f] = 0xFFBBAA;
+				//mlx_pixel_put(g_ptr, g_win, a, b, 0xFFBBAA);
+				}
 			b++;
 		}
 		a++;

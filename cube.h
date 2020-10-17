@@ -5,8 +5,9 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <math.h>
 #include "gnl/get_next_line.h"
-//#include "libft/libft.h"
+#include "libft/libft.h"
 
 void *g_ptr;
 void *g_win;
@@ -24,8 +25,12 @@ typedef struct s_tool
 } t_tool;
 t_tool g_tool;
 
-void ft_square(void *ptr,void *win);
-void init(void);
-void ft_gnl(void);
+void    ft_square(void *ptr,void *win);
+void    init(void);
+void    ft_gnl(void);
+int     checking(char **cub);
+void    ft_circle(void *ptr,void *win);
+int     end(int x,void *s);
+
 
 #endif 
