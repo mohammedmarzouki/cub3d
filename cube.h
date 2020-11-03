@@ -9,28 +9,28 @@
 #include "gnl/get_next_line.h"
 #include "libft/libft.h"
 
-void *g_ptr;
-void *g_win;
-void *g_image;
-int *g_screen;
+void *g_ptr;//initialisation pointer
+void *g_win;//the window pointer
+void *g_image;//image pointer
+int *g_screen;//image array
 
 typedef struct s_tool
 {
-    int x;
-    int y;
-    int a;
-    int b;
-    int xa;
-    int ya;
+    int x;//the moving x index
+    int y;//the moving y index
+    int a;//last x point in the square
+    int b;//last y point in the square
+    int xa;//the x resolution "1080"
+    int ya;//the y resolution "720"
 } t_tool;
 t_tool g_tool;
 
 void    ft_square(void *ptr,void *win);
 void    init(void);
 void    ft_gnl(void);
-int     checking(char **cub);
+int     checking(char *cub);
 void    ft_circle(void *ptr,void *win);
 int     end(int x,void *s);
-
+void    ta_sir(char *s);
 
 #endif 

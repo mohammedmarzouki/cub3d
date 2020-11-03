@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 10:58:32 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/10/17 20:16:04 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/11/03 12:04:57 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,17 @@
         return(-1);
     
 }*/
-int checking(char **cub)
+int checking(char *line)
 {
-    char **hold;
-    int i;
-    
-    i = 0;
+    // int i;
+    // i = first_half(lin);
+    // if (i < 0)
+    //     data_error(i);    
+    // i = second_half(lin);
+    // if (i < 0)
+    //     map_error(i); 
+    return(1);
+}
 /*    if(*cub && i < 8)
     {
         hold = ft_split(cub[i],' ');
@@ -50,5 +55,3 @@ int checking(char **cub)
         }
         i++;
     }*/
-    return(0);
-}

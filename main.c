@@ -6,11 +6,17 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/10/17 20:15:37 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/11/03 12:02:49 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+void ta_sir(char *s)
+{
+	write(1,"Error \n",7);
+	ft_putstr_fd(s,1);
+	exit(0);
+}
 
 int end(int x,void *s)
 {
@@ -44,7 +50,7 @@ int try(int x,void *s)
 	}
 	if (x == 53)
 		end(x,s);
-	ft_square(g_ptr,g_win);	
+	ft_circle(g_ptr,g_win);	
 	return (0);
 }
 void looping()
@@ -53,9 +59,9 @@ void looping()
 	int j;
 	int k;
 
-	g_tool.xa = 800;
-	g_tool.ya = 500;
-	init();
+	g_tool.xa = 500;
+	g_tool.ya = 800;
+	//init();
 	g_ptr = mlx_init();
 	g_win = mlx_new_window(g_ptr, g_tool.xa, g_tool.ya, "image");
 	g_image = mlx_new_image(g_ptr,g_tool.xa,g_tool.ya);
@@ -63,11 +69,11 @@ void looping()
 	mlx_hook(g_win,2,1,try,NULL);
 	mlx_hook(g_win,17,0,end,NULL);
 	mlx_clear_window(g_ptr,g_win);
-	ft_square(g_ptr,g_win);
+	ft_circle(g_ptr,g_win);
 	mlx_loop(g_ptr);
 }
 int main()
-{		
+{
 	ft_gnl();
 	looping();
 	return(0);

@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/10/15 16:30:43 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/10/20 13:06:50 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void ft_circle(void *ptr,void *win)
 
 	
 
-	a = g_tool.x;
-	b = k = g_tool.y;
+	a = 0;
+	b = k = 0;
 	g_tool.a = (g_tool.x + 50);
 	g_tool.b = (g_tool.y + 50);
 	while(a < g_tool.xa)
@@ -72,7 +72,7 @@ void ft_circle(void *ptr,void *win)
 		b = k;
 		while(b < g_tool.ya)
 		{
-			
+			if(pow((a-g_tool.x),2)+pow((b-g_tool.y),2) <= pow(r,2))
 				{
 					f = (b * g_tool.xa + a);//index= current y pixel times* the last x pixel plus+ the current x pixel
 					g_screen[f] = 0xFFBBAA;
