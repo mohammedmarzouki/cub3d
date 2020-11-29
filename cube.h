@@ -23,6 +23,19 @@ typedef struct s_tool
     int xa;//the x resolution "1080"
     int ya;//the y resolution "720"
 } t_tool;
+
+
+
+typedef struct s_xpm
+{
+    int *no;
+    int *so;
+    int *ea;
+    int *we;
+    int *s;
+} t_xpm;
+
+t_xpm g_xpm;
 t_tool g_tool;
 
 void    ft_square(void *ptr,void *win);
@@ -32,5 +45,8 @@ int     checking(char *cub);
 void    ft_circle(void *ptr,void *win);
 int     end(int x,void *s);
 void    ta_sir(char *s);
+void    chk_err(char *s, int fd);
+void    chk_rcf(char *s,int fd);
+void    chk_resolution(char *s,int fd);
 
 #endif 

@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/11/03 12:02:49 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/11/29 12:11:24 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void looping()
 	g_tool.xa = 500;
 	g_tool.ya = 800;
 	//init();
-	g_ptr = mlx_init();
+	
+	
 	g_win = mlx_new_window(g_ptr, g_tool.xa, g_tool.ya, "image");
 	g_image = mlx_new_image(g_ptr,g_tool.xa,g_tool.ya);
 	g_screen = (int *)mlx_get_data_addr(g_image,&i,&j,&k);
@@ -74,6 +75,7 @@ void looping()
 }
 int main()
 {
+	g_ptr = mlx_init();
 	ft_gnl();
 	looping();
 	return(0);

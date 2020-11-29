@@ -6,28 +6,44 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/11/03 12:15:07 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/11/29 11:46:03 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-char *crop(char *s,int *i)
+int startswith(char c1,char c2,char *s)
 {
-
-    *i = 0;
-    if (s)
-        while (s[(*i)])
-        {
-            if(s[(*i)] == '1')
-            {
-                while(s[(*i)] != '\n' && *i > 0)
-                    (*i)--;
-                return(ft_substr(s,*i,strlen(s))); 
-            }
-            (*i)++;
-        }
-    return (NULL);
+    if(!c2)
+    {
+        if(s[0]==c1)
+            return (1);
+    }
+    if(s[0] == c1 && s[1] == c2)
+        return (1); 
+    return(0);
+}
+void valid_line(char *s, int fd)
+{
+    if(!ft_strncmp(s, "NO", 2))
+        chk_err(s, fd);
+    else if(!ft_strncmp(s, "SO", 2))
+        chk_err(s, fd);
+    else if(!ft_strncmp(s, "WE", 2))
+        chk_err(s, fd);
+    else if(!ft_strncmp(s, "EA", 2))
+        chk_err(s, fd);
+    else if(!ft_strncmp(s, "S", 1))
+        chk_err(s, fd);
+    else if(!ft_strncmp(s, "R", 1))
+        chk_resolution(s, fd);
+    //else if(strncmp(s, "C", 1))
+        //chk_err(s, fd);
+    //else if(startswith('F', 0, s))
+        //chk_err(s, fd);
+    else
+        ft_putstr_fd(s,1);
+    
 }
 void ft_gnl(void)
 {
@@ -37,19 +53,19 @@ void ft_gnl(void)
 
     
     fd = open("map.cub",O_RDONLY);
-    i = get_next_line(fd,&line);
-    if (i == -1)
-        return;
-    //if (checking(line))
-    printf("%s\n",line);
-    //else
-    //    printf("not valid\n");
-    i = 0;
-    free (line);
+    i = 1;
+
+    while(i)
+    {
+        i = get_next_line(fd,&line);
+        if (i < 0)
+            ta_sir("file descriptor problem ");
+        else
+        {
+            valid_line(line, fd);
+            free (line);
+        }
+        
+    }
     close (fd);
 }
-    // while (art[i])
-    // {
-    //     printf("%s |%d|\n",art[i],i);
-    //     i++;
-    // }
