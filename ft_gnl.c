@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/11/29 11:46:03 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/11/29 13:08:52 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void valid_line(char *s, int fd)
         chk_err(s, fd);
     else if(!ft_strncmp(s, "R", 1))
         chk_resolution(s, fd);
-    //else if(strncmp(s, "C", 1))
-        //chk_err(s, fd);
-    //else if(startswith('F', 0, s))
-        //chk_err(s, fd);
+    else if(!strncmp(s, "C", 1))
+        chk_cf(s, fd);
+    else if(startswith('F', 0, s))
+        chk_cf(s, fd);
     else
         ft_putstr_fd(s,1);
     

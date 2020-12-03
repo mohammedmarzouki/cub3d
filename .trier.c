@@ -6,6 +6,7 @@ int doublecount(char **s)
     int i;
 
     i = 0;
+    // if (s && *s)
     if (s)
     {
         while (s[i])
@@ -14,23 +15,41 @@ int doublecount(char **s)
     return(i);
 }
 
-int alldigs(char *s,int len)
+int countchars(char *s ,char c)
 {
     int i;
+    int count;
 
     i = 0;
-    while (i < len && s)
+    count = 0;
+    while(s[i])
     {
-        if(!ft_isdigit(s[i]))
-            return(0);
+        if (s[i] == c)
+            count++;
         i++;
     }
-    return(1);
+    return(count);
+    
 }
+// int alldigs(char *s,int len)
+// {
+//     int i;
+
+//     i = 0;
+//     while (i < len && s)
+//     {
+//         if(!ft_isdigit(s[i]))
+//             return(0);
+//         i++;
+//     }
+//     return(1);
+// }
 int main()
 {
-    char *s;
+    char **s;
 
-    s = "l654568";
-    printf("%d\n",alldigs(s,ft_strlen(s)));
+    s = ft_split("c kdfv nelknn fff",' ');
+    
+    
+    printf("%d\n",countchars("dgrg,sgaa,agrgrgarsgarg",','));
 }
