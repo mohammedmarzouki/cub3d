@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/10/20 13:06:50 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/07 18:52:46 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,17 @@
 }*/
 void init(void)
 {
+	g_ptr = mlx_init();
     g_tool.x = 20;
     g_tool.y = 30;
+	g_tool.readingmap = 0;
+	g_tool.cntplyr = 0;
+	g_xpm.no =  NULL;
+	g_xpm.so =  NULL;
+	g_xpm.ea =  NULL;
+	g_xpm.we =  NULL;
+	g_xpm.s =  NULL;
+	g_tool.vars.carrier = ft_strdup("");
 }
 void ft_square(void *ptr,void *win)
 {

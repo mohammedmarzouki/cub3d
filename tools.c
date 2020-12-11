@@ -6,12 +6,11 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/02 16:47:58 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/04 19:52:27 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-
 
 void doublefree(char **ptr)
 {

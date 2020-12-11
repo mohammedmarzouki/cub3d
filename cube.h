@@ -18,6 +18,7 @@ typedef struct s_free
 {
     char **hold;
     char **colour;
+    char *carrier;
 } t_free;
 
 typedef struct s_tool
@@ -34,6 +35,11 @@ typedef struct s_tool
     int fr;//floor red
     int fg;//floor green
     int fb;//floor blue
+    int resflag;//True when resolution exist
+    int cflag;//true when color exist
+    int fflag;//true when floor exist
+    int readingmap;//true when reading map
+    int cntplyr;//count palyer
     t_free vars;
 } t_tool;
 
@@ -46,9 +52,17 @@ typedef struct s_xpm
     int *we;
     int *s;
 } t_xpm;
+typedef struct s_map
+{
+    char **map;
+    int ppx;
+    int ppy;
+    float pdrct;
+} t_map;
 
 t_xpm g_xpm;
 t_tool g_tool;
+t_map g_map;
 
 void    ft_square(void *ptr,void *win);
 void    init(void);
@@ -65,6 +79,15 @@ int     alldigs(char *s,int len);
 int     doublecount(char **s);
 void    doublefree(char **ptr);
 void    affect_coulour(char **colour,char c,char **hold);
-void    salit(void);
 int     reversecheck(char *s,char *str);
+void    other(char *s,int fd);
+int     alldone(void);
+void    affect_xpm(void	*xpm_ptr);
+int     itismap(char *s);
+int     allspaces(char *s);
+void    save_map(char *s);
+void    handling_errors(void);
+void    handling_map(int i);
+void    resizing_map(int i,int big_len);
+void    check_map_errors(int max_x,int max_y);
 #endif 
