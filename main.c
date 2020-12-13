@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/10 11:07:12 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/13 13:19:23 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void ta_sir(char *s)
 	write(1,"Error \n",7);
 	ft_putstr_fd(s,1);
 	write(1,"\n",1);
-	
 	exit(0);
 }
 
@@ -52,7 +51,8 @@ int try(int x,void *s)
 	}
 	if (x == 53)
 		end(x,s);
-	ft_circle(g_ptr,g_win);	
+	drawmap();
+	mlx_put_image_to_window(g_ptr, g_win, g_image, 0 ,0 );
 	return (0);
 }
 void looping()
@@ -60,17 +60,14 @@ void looping()
 	int i;
 	int j;
 	int k;
-
-	g_tool.xa = 500;
-	g_tool.ya = 800;
 	
+	g_tool.ts = g_tool.xa / ft_strlen(g_map.map[0]);
 	g_win = mlx_new_window(g_ptr, g_tool.xa, g_tool.ya, "image");
 	g_image = mlx_new_image(g_ptr,g_tool.xa,g_tool.ya);
 	g_screen = (int *)mlx_get_data_addr(g_image,&i,&j,&k);
 	mlx_hook(g_win,2,1,try,NULL);
 	mlx_hook(g_win,17,0,end,NULL);
-	mlx_clear_window(g_ptr,g_win);
-	ft_circle(g_ptr,g_win);
+	try(-1,NULL);
 	mlx_loop(g_ptr);
 }
 int main()
@@ -79,7 +76,6 @@ int main()
 	init();
 	ft_gnl();
 	handling_errors();
-	printf("\n%d\n",g_tool.xa);
-	//looping();
+	looping();
 	return(0);
 }

@@ -40,6 +40,7 @@ typedef struct s_tool
     int fflag;//true when floor exist
     int readingmap;//true when reading map
     int cntplyr;//count palyer
+    int ts;
     t_free vars;
 } t_tool;
 
@@ -90,4 +91,7 @@ void    handling_errors(void);
 void    handling_map(int i);
 void    resizing_map(int i,int big_len);
 void    check_map_errors(int max_x,int max_y);
+void    drawmap(void);
+int		trgb(int t, int r, int g, int b);
+void    square(int x,int y,int lenght,int colour);
 #endif 

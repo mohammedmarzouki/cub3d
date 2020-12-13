@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/09 13:39:05 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/13 13:26:54 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void ft_gnl(void)
     char *line;
 
     
-    fd = open("map.cub",O_RDONLY);
+    fd = open("map3.cub",O_RDONLY);
     i = 1;
 
     while(i)
