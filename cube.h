@@ -13,7 +13,7 @@ void *g_ptr;//initialisation pointer
 void *g_win;//the window pointer
 void *g_image;//image pointer
 int *g_screen;//image array
-
+#define violet 0x4502e0
 typedef struct s_free
 {
     char **hold;
@@ -69,7 +69,7 @@ void    ft_square(void *ptr,void *win);
 void    init(void);
 void    ft_gnl(void);
 int     checking(char *cub);
-void    ft_circle(void *ptr,void *win);
+void    ft_circle(int a,int b,int colour);
 int     end(int x,void *s);
 void    ta_sir(char *s);
 void    chk_err(char *s, int fd);
@@ -94,4 +94,9 @@ void    check_map_errors(int max_x,int max_y);
 void    drawmap(void);
 int		trgb(int t, int r, int g, int b);
 void    square(int x,int y,int lenght,int colour);
+void    drawplayer(void);
+void    draw_line(int x ,int y,int x1,int y1);
+void    init_values(void);
+void    render(void);
+void    player_position(int *x, int *y);
 #endif 

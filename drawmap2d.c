@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/13 13:14:52 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/16 14:30:45 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,22 @@ void    drawmap(void)
         }
         i++;
     }
+}
+void drawplayer(void)
+{
+    int i;
+    int j;
 
-//	mlx_clear_window(g_ptr, g_win);
-
+    i = 0;
+    while(g_map.map[i])
+    {
+        j = 0;
+        while(g_map.map[i][j])
+        {
+            if(ft_strchr("NWSE",g_map.map[i][j]))
+                ft_circle(g_map.ppx, g_map.ppy,trgb(0,g_tool.fr,g_tool.fg,g_tool.fb));
+            j++;
+        }
+        i++;
+    }
 }
