@@ -14,6 +14,11 @@ void *g_win;//the window pointer
 void *g_image;//image pointer
 int *g_screen;//image array
 #define violet 0x4502e0
+#define W 13
+#define S 1
+#define A 0
+#define D 2
+
 typedef struct s_free
 {
     char **hold;
@@ -56,9 +61,11 @@ typedef struct s_xpm
 typedef struct s_map
 {
     char **map;
-    int ppx;
-    int ppy;
+    float ppx;
+    float ppy;
     float pdrct;
+    float nppx;
+    float nppy;
 } t_map;
 
 t_xpm g_xpm;
@@ -99,4 +106,6 @@ void    draw_line(int x ,int y,int x1,int y1);
 void    init_values(void);
 void    render(void);
 void    player_position(int *x, int *y);
+void    wall(void);
+void    correcting_angle(void);
 #endif 

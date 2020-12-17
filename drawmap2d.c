@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/16 14:30:45 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/17 17:32:19 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,15 @@ void square(int x,int y,int lenght,int colour)
         y = yh;
         while(y < lenght + yh)
         {
-			g_screen[(y * g_tool.xa + x)] = colour;
+            if(x == xh || y == yh || x == xh + lenght-1|| y == yh + lenght -1)
+			    g_screen[(y * g_tool.xa + x)] = 0x000000;
+            else
+			    g_screen[(y * g_tool.xa + x)] = colour;
+                
             //mlx_pixel_put(g_ptr, g_win, x, y, colour);
             y++;
         }
+        // g_screen[(y-1 * g_tool.xa + x)] = 0x000000;
         x++;
     }
 }
