@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 08:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/17 20:08:12 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/18 12:55:48 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,18 @@ void    wall(void)
     y = g_map.nppy / g_tool.ts;
     if(!ft_strchr("1 2",g_map.map[y][x]))
     {
-        g_map.ppx = g_map.nppx;
-        g_map.ppy = g_map.nppy;
+        x = g_map.ppx / g_tool.ts;
+        y = g_map.nppy / g_tool.ts;
+        if(!ft_strchr("1 2",g_map.map[y][x]))
+        {
+            x = g_map.nppx / g_tool.ts;
+            y = g_map.ppy / g_tool.ts;
+            if(!ft_strchr("1 2",g_map.map[y][x]))
+            {                
+                g_map.ppx = g_map.nppx;
+                g_map.ppy = g_map.nppy;
+            }
+        }
     }
 }
 void    render(void)
@@ -31,7 +41,6 @@ void    render(void)
     drawmap();
     drawplayer();
     draw_line(g_map.ppx,g_map.ppy,g_map.ppx+cos(g_map.pdrct)*30 , g_map.ppy + sin(g_map.pdrct)*30);
-    //draw_line(0,100,0,200);
     mlx_put_image_to_window(g_ptr, g_win, g_image, 0 ,0 );
 }
 void correcting_angle(void)

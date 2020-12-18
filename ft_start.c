@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/17 20:02:26 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/18 13:15:53 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,17 @@ void ft_circle(int x,int y,int colour)
 	int k;
 	int a ;
 	int b ;
-	int r = 5;
 
 	
-	a = 0;
-	b = 0;
+	a = x - g_tool.ts;
+	b = y - g_tool.ts;
 	k = b;
-	while(a < g_tool.xa)
+	while(a < x + g_tool.ts)
 	{
 		b = k;
-		while(b < g_tool.ya)
+		while(b < y + g_tool.ts)
 		{
-			if(pow((a - x),2)+pow((b - y),2) <= pow(r,2))
+			if(pow((a - x),2)+pow((b - y),2) <= pow(5,2))
 				{
 					g_screen[(b * g_tool.xa + a)] = violet;
 				}

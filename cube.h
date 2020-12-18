@@ -18,6 +18,7 @@ int *g_screen;//image array
 #define S 1
 #define A 0
 #define D 2
+#define STP 10
 
 typedef struct s_free
 {

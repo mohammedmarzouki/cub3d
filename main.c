@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/17 20:03:56 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/18 12:50:25 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,26 @@ int try(int x,void *s)
 	//left = 123 
 	if(x == W)
 	{
-		g_map.nppy = g_map.ppy +  sin(g_map.pdrct)*15;
-		g_map.nppx = g_map.ppx +  cos(g_map.pdrct)*15;
+		g_map.nppy = g_map.ppy +  sin(g_map.pdrct) * STP;
+		g_map.nppx = g_map.ppx +  cos(g_map.pdrct) * STP;
 	}
 	if (x == A)
 	{
-		g_map.nppy =g_map.ppy - sin(g_map.pdrct + M_PI/2)*15;
-		g_map.nppx = g_map.ppx - cos(g_map.pdrct + M_PI/2)*15;
+		g_map.nppy = g_map.ppy - sin(g_map.pdrct + M_PI/2) * STP;
+		g_map.nppx = g_map.ppx - cos(g_map.pdrct + M_PI/2) * STP;
 	}
 	if (x == S)
 	{
-		g_map.nppy =g_map.ppy - sin(g_map.pdrct)*155;
-		g_map.nppx = g_map.ppx - cos(g_map.pdrct)*155;
+		g_map.nppy = g_map.ppy - sin(g_map.pdrct) * STP;
+		g_map.nppx = g_map.ppx - cos(g_map.pdrct) * STP;
 	}
 	if (x == D)
 	{
-		g_map.nppy = g_map.ppy + sin(g_map.pdrct + M_PI/2)*15;
-		g_map.nppx = g_map.ppx + cos(g_map.pdrct + M_PI/2)*15;
+		g_map.nppy = g_map.ppy + sin(g_map.pdrct + M_PI/2) * STP;
+		g_map.nppx = g_map.ppx + cos(g_map.pdrct + M_PI/2) * STP;
 	}
 	if (x == 53)
-		end(x,s);
+		end(x, s);
 	if (x == 124)
 		g_map.pdrct += M_PI/12;
 	if (x == 123)
