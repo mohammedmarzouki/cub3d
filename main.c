@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/18 12:50:25 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/19 12:03:16 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int try(int x,void *s)
 	correcting_angle();
 	wall();
 	drawmap();
-	printf("%f\n",g_map.pdrct);
+
 	ft_circle(g_map.ppx, g_map.ppy,trgb(0,g_tool.fr,g_tool.fg,g_tool.fb));
-	draw_line(g_map.ppx,g_map.ppy,g_map.ppx+cos(g_map.pdrct)*30 , g_map.ppy + sin(g_map.pdrct)*30);
+	ft_fov();
 	mlx_put_image_to_window(g_ptr, g_win, g_image, 0 ,0 );
 	return (0);
 }
@@ -74,7 +74,7 @@ void looping()
 	int j;
 	int k;
 	
-	g_tool.ts = g_tool.xa / ft_strlen(g_map.map[0]);
+	g_tool.ts = 64;
 	g_win = mlx_new_window(g_ptr, g_tool.xa, g_tool.ya, "image");
 	g_image = mlx_new_image(g_ptr,g_tool.xa,g_tool.ya);
 	g_screen = (int *)mlx_get_data_addr(g_image,&i,&j,&k);

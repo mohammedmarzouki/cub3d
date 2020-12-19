@@ -19,6 +19,7 @@ int *g_screen;//image array
 #define A 0
 #define D 2
 #define STP 10
+#define FOV (M_PI / 3)
 
 typedef struct s_free
 {
@@ -109,4 +110,6 @@ void    render(void);
 void    player_position(int *x, int *y);
 void    wall(void);
 void    correcting_angle(void);
+int     is_wall(int x ,int y,float i,float j);
+void    ft_fov(void);
 #endif 

@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 08:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/18 12:55:48 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/18 20:33:54 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,35 @@ void    wall(void)
         }
     }
 }
+int is_wall(int x ,int y,float i,float j)
+{
+    float a;
+    float b;
+    
+    a = x / g_tool.ts;
+    b = y / g_tool.ts;
+    if(!ft_strchr("1 2",g_map.map[(int)b][(int)a]))
+    {
+        a = (x + 3*i) / g_tool.ts;
+        b = y / g_tool.ts;
+        if(!ft_strchr("1 2",g_map.map[(int)b][(int)a]))
+        {
+            a = x / g_tool.ts;
+            b = (y + 3*j) / g_tool.ts;
+            if(!ft_strchr("1 2",g_map.map[(int)b][(int)a]))
+            {                
+                return(0);
+            }
+        }
+    }
+    return(1);
+}
 void    render(void)
 {
     init_values();
     drawmap();
     drawplayer();
-    draw_line(g_map.ppx,g_map.ppy,g_map.ppx+cos(g_map.pdrct)*30 , g_map.ppy + sin(g_map.pdrct)*30);
+    draw_line(g_map.ppx,g_map.ppy,g_map.ppx+cos(g_map.pdrct)*800 , g_map.ppy + sin(g_map.pdrct)*800);
     mlx_put_image_to_window(g_ptr, g_win, g_image, 0 ,0 );
 }
 void correcting_angle(void)

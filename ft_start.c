@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/18 13:15:53 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/19 11:59:33 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,20 @@ void 	draw_line(int x ,int y,int x1,int y1)
 	float  b0;
     float  c0;
 	
-	x_inc = x - x1;
-	y_inc = y - y1;
+	x_inc = x1 - x;
+	y_inc = y1 - y;
 	steps = fabs(x_inc) > fabs(y_inc) ? fabs(x_inc) : fabs(y_inc);
 	x_inc = x_inc/steps;
 	y_inc = y_inc/steps;
-	b0 = x1;
-    c0 = y1;
+	b0 = x;
+    c0 = y;
+	//printf("%f-------%f\n",x_inc,y_inc);
 	while (steps--)
 	{
+		if(((int)b0 % g_tool.ts == 0 || (int)c0 % g_tool.ts == 0 ||
+		(int)b0 % g_tool.ts == g_tool.ts - 1||
+		(int)c0 % g_tool.ts == g_tool.ts -1) && is_wall(b0,c0,x_inc,y_inc))
+			return;
 		g_screen[((int)c0 * g_tool.xa + (int)b0)] = violet;
 		b0 += x_inc;
 		c0 += y_inc;
