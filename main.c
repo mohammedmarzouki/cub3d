@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/19 12:03:16 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/22 19:44:25 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int try(int x,void *s)
 	//d = 2
 	//right = 124
 	//left = 123 
+	int i,j,k;
 	if(x == W)
 	{
 		g_map.nppy = g_map.ppy +  sin(g_map.pdrct) * STP;
@@ -59,10 +60,12 @@ int try(int x,void *s)
 		g_map.pdrct += M_PI/12;
 	if (x == 123)
 		g_map.pdrct -= M_PI/12;
+	mlx_destroy_image(g_ptr,g_image);
+	g_image = mlx_new_image(g_ptr,g_tool.xa,g_tool.ya);
+	g_screen = (int *)mlx_get_data_addr(g_image,&i,&j,&k);
 	correcting_angle();
 	wall();
 	drawmap();
-
 	ft_circle(g_map.ppx, g_map.ppy,trgb(0,g_tool.fr,g_tool.fg,g_tool.fb));
 	ft_fov();
 	mlx_put_image_to_window(g_ptr, g_win, g_image, 0 ,0 );

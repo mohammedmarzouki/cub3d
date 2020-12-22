@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/18 20:12:43 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/21 18:19:12 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void    drawmap(void)
         while(g_map.map[i][j])
         {
             if(g_map.map[i][j] == '1')
-                square(j*g_tool.ts, i*g_tool.ts, g_tool.ts,trgb(0,g_tool.cr,g_tool.cg,g_tool.cb));
+                square(j*g_tool.ts/5, i*g_tool.ts/5, g_tool.ts/5,trgb(0,g_tool.cr,g_tool.cg,g_tool.cb));
             else
-                square(j*g_tool.ts, i*g_tool.ts, g_tool.ts,trgb(0,g_tool.fr,g_tool.fg,g_tool.fb));
+                square(j*g_tool.ts/5, i*g_tool.ts/5, g_tool.ts/5,trgb(0,g_tool.fr,g_tool.fg,g_tool.fb));
             j++;
         }
         i++;

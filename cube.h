@@ -21,7 +21,9 @@ int *g_screen;//image array
 #define STP 10
 #define FOV (M_PI / 3)
 
-typedef struct s_free
+float hold;
+
+typedef struct s_freD
 {
     char **hold;
     char **colour;
@@ -112,4 +114,7 @@ void    wall(void);
 void    correcting_angle(void);
 int     is_wall(int x ,int y,float i,float j);
 void    ft_fov(void);
+void    draw_walls(int x,int y);
+float   distance(int x,int y,int x2,int y2);
+void 	a_line(int x ,int y,int x1,int y1);
 #endif 

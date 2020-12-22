@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/19 11:59:33 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/21 18:21:59 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,12 @@ void 	draw_line(int x ,int y,int x1,int y1)
 		if(((int)b0 % g_tool.ts == 0 || (int)c0 % g_tool.ts == 0 ||
 		(int)b0 % g_tool.ts == g_tool.ts - 1||
 		(int)c0 % g_tool.ts == g_tool.ts -1) && is_wall(b0,c0,x_inc,y_inc))
+		{
+			
+			draw_walls((int)b0,(int)c0);
 			return;
-		g_screen[((int)c0 * g_tool.xa + (int)b0)] = violet;
+		}
+		g_screen[((int)c0/5 * g_tool.xa + (int)b0/5)] = violet;
 		b0 += x_inc;
 		c0 += y_inc;
 	}
@@ -60,17 +64,17 @@ void ft_circle(int x,int y,int colour)
 	int b ;
 
 	
-	a = x - g_tool.ts;
-	b = y - g_tool.ts;
+	a = x - g_tool.ts/5;
+	b = y - g_tool.ts/5;
 	k = b;
-	while(a < x + g_tool.ts)
+	while(a < x + g_tool.ts/5)
 	{
 		b = k;
-		while(b < y + g_tool.ts)
+		while(b < y + g_tool.ts/5)
 		{
 			if(pow((a - x),2)+pow((b - y),2) <= pow(5,2))
 				{
-					g_screen[(b * g_tool.xa + a)] = violet;
+					g_screen[(b/5 * g_tool.xa + a/5)] = violet;
 				}
 			b++;
 		}
