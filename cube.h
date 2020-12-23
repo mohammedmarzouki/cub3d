@@ -20,6 +20,7 @@ int *g_screen;//image array
 #define D 2
 #define STP 10
 #define FOV (M_PI / 3)
+#define DIV 0.2
 
 float hold;
 
@@ -112,7 +113,7 @@ void    render(void);
 void    player_position(int *x, int *y);
 void    wall(void);
 void    correcting_angle(void);
-int     is_wall(float *x ,float *y,float *i,float *j);
+int     is_wall(float x ,float y);
 void    ft_fov(void);
 void    draw_walls(float x,float y);
 float   distance(float x,float y,float x2,float y2);

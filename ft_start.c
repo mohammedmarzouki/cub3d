@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/23 18:01:19 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/23 18:43:38 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,15 @@ void 	draw_line(float x ,float y,float x1,float y1)
 	{
 		if(((int)x % g_tool.ts == 0 || (int)y % g_tool.ts == 0 ||
 		(int)x % g_tool.ts == g_tool.ts - 1 ||
-		(int)y % g_tool.ts == g_tool.ts - 1 ) && is_wall(&x,&y,&x_inc,&y_inc))
+		(int)y % g_tool.ts == g_tool.ts - 1 ) && is_wall(x,y))
 		{
 			//printf("%f-------%f\n",x,y);
 			draw_walls(x,y);
 			return;
 		}
-		g_screen[((int)y/5 * g_tool.xa + (int)x/5)] = violet;
-		x += x_inc;
-		y += y_inc;
+		g_screen[((int)(y* DIV) * g_tool.xa + (int)(x* DIV))] = violet;
+		x += (x_inc / 10);
+		y += (y_inc / 10);
 	}
 }
 void ft_circle(int x,int y,int colour)
@@ -64,17 +64,17 @@ void ft_circle(int x,int y,int colour)
 	int b ;
 
 	
-	a = x - g_tool.ts/5;
-	b = y - g_tool.ts/5;
+	a = x - g_tool.ts;
+	b = y - g_tool.ts;
 	k = b;
-	while(a < x + g_tool.ts/5)
+	while(a < x + g_tool.ts)
 	{
 		b = k;
-		while(b < y + g_tool.ts/5)
+		while(b < y + g_tool.ts)
 		{
 			if(pow((a - x),2)+pow((b - y),2) <= pow(5,2))
 				{
-					g_screen[(b/5 * g_tool.xa + a/5)] = violet;
+					g_screen[((int)(b* DIV) * g_tool.xa + (int)(a* DIV))] = violet;
 				}
 			b++;
 		}

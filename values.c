@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 08:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/23 18:03:41 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/23 18:37:26 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ void    wall(void)
         }
     }
 }
-int is_wall(float *x ,float *y,float *i,float *j)
+int is_wall(float x ,float y)
 {
-    float a, a2;
-    float b, b2;
+    float a;
+    float b;
     
-    a = *x / g_tool.ts;
-    b = *y / g_tool.ts;  
-    a2 = (*x + 1) / g_tool.ts;
-    b2 = *y / g_tool.ts;
-    if(!ft_strchr("1 2",g_map.map[(int)b][(int)a]) && (!ft_strchr("1 2",g_map.map[(int)b2][(int)a2])))
+    a = x / g_tool.ts;
+    b = y / g_tool.ts;  
+    x = (x + 1) / g_tool.ts;
+    y = y / g_tool.ts;
+    if(!ft_strchr("1 2",g_map.map[(int)b][(int)a]) && (!ft_strchr("1 2",g_map.map[(int)y][(int)x])))
     {
         return(0);
     }

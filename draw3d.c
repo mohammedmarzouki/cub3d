@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 16:16:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/23 18:16:09 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/23 18:44:31 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void draw_walls(float x,float y)
 
     d = distance(g_map.ppx,g_map.ppy,x,y);
     corr = d * cos(hold - g_map.pdrct);
-    printf("%f||%f||%f\n",d,x,y);
+    //printf("%f||%f||%f\n",d,x,y);
 
 	
     pw = (g_tool.ts / corr) * (float)(g_tool.xa / 2)/tan(M_PI/3);
@@ -48,7 +48,7 @@ void 	a_line(float x ,float y,float x1,float y1)
     c0 = y;
 	while ((int)steps--)
 	{
-		g_screen[((int)nearbyintf(c0) * g_tool.xa + (int)b0)] = violet;
+		g_screen[((int)c0 * g_tool.xa + (int)b0)] = violet;
 		b0 += x_inc;
 		c0 += y_inc;
 	}
