@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/21 18:21:59 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/23 18:01:19 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void init(void)
 	g_xpm.s =  NULL;
 	g_tool.vars.carrier = ft_strdup("");
 }
-void 	draw_line(int x ,int y,int x1,int y1)
+void 	draw_line(float x ,float y,float x1,float y1)
 {
 	float x_inc;
 	float y_inc;
-	int steps;
+	float steps;
 	float  b0;
     float  c0;
 	
@@ -39,22 +39,22 @@ void 	draw_line(int x ,int y,int x1,int y1)
 	steps = fabs(x_inc) > fabs(y_inc) ? fabs(x_inc) : fabs(y_inc);
 	x_inc = x_inc/steps;
 	y_inc = y_inc/steps;
-	b0 = x;
-    c0 = y;
-	//printf("%f-------%f\n",x_inc,y_inc);
-	while (steps--)
+	//printf("%f---%f---%f\n",x_inc,steps,y_inc);
+	// b0 = x;
+    // c0 = y;
+	while ((int)steps--)
 	{
-		if(((int)b0 % g_tool.ts == 0 || (int)c0 % g_tool.ts == 0 ||
-		(int)b0 % g_tool.ts == g_tool.ts - 1||
-		(int)c0 % g_tool.ts == g_tool.ts -1) && is_wall(b0,c0,x_inc,y_inc))
+		if(((int)x % g_tool.ts == 0 || (int)y % g_tool.ts == 0 ||
+		(int)x % g_tool.ts == g_tool.ts - 1 ||
+		(int)y % g_tool.ts == g_tool.ts - 1 ) && is_wall(&x,&y,&x_inc,&y_inc))
 		{
-			
-			draw_walls((int)b0,(int)c0);
+			//printf("%f-------%f\n",x,y);
+			draw_walls(x,y);
 			return;
 		}
-		g_screen[((int)c0/5 * g_tool.xa + (int)b0/5)] = violet;
-		b0 += x_inc;
-		c0 += y_inc;
+		g_screen[((int)y/5 * g_tool.xa + (int)x/5)] = violet;
+		x += x_inc;
+		y += y_inc;
 	}
 }
 void ft_circle(int x,int y,int colour)

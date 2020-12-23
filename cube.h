@@ -48,7 +48,7 @@ typedef struct s_tool
     int cflag;//true when color exist
     int fflag;//true when floor exist
     int readingmap;//true when reading map
-    int cntplyr;//count palyer
+    int cntplyr;//count player
     int ts;
     t_free vars;
 } t_tool;
@@ -106,15 +106,15 @@ void    drawmap(void);
 int		trgb(int t, int r, int g, int b);
 void    square(int x,int y,int lenght,int colour);
 void    drawplayer(void);
-void    draw_line(int x ,int y,int x1,int y1);
+void    draw_line(float x ,float y,float x1,float y1);
 void    init_values(void);
 void    render(void);
 void    player_position(int *x, int *y);
 void    wall(void);
 void    correcting_angle(void);
-int     is_wall(int x ,int y,float i,float j);
+int     is_wall(float *x ,float *y,float *i,float *j);
 void    ft_fov(void);
-void    draw_walls(int x,int y);
-float   distance(int x,int y,int x2,int y2);
-void 	a_line(int x ,int y,int x1,int y1);
+void    draw_walls(float x,float y);
+float   distance(float x,float y,float x2,float y2);
+void 	a_line(float x ,float y,float x1,float y1);
 #endif 

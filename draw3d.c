@@ -6,35 +6,36 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 16:16:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/21 19:57:24 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/23 18:16:09 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-float distance(int x,int y,int x2,int y2)
+float distance(float x,float y,float x2,float y2)
 {
     return(sqrt(pow((x - x2),2) + pow((y - y2),2)));
 }
-void draw_walls(int x,int y)
+void draw_walls(float x,float y)
 {
     float d;
     float corr;
-    int pw;
+    float pw;
 
     d = distance(g_map.ppx,g_map.ppy,x,y);
     corr = d * cos(hold - g_map.pdrct);
-    //printf("%f||||%f\n",hold,g_map.pdrct);
-    pw = (g_tool.ts / corr )* (g_tool.xa/2)/tan(M_PI/3);
-    pw = pw > g_tool.ya?g_tool.ya:pw;
-    //printf("||||%d|%f|%f||\n",pw,d,corr);
-    a_line(g_tool.cntplyr,g_tool.ya/2 +(pw/2)-1,g_tool.cntplyr,g_tool.ya/2 - (pw/2));
+    printf("%f||%f||%f\n",d,x,y);
+
+	
+    pw = (g_tool.ts / corr) * (float)(g_tool.xa / 2)/tan(M_PI/3);
+    pw = pw > g_tool.ya ? g_tool.ya : pw;
+    a_line(g_tool.cntplyr,g_tool.ya/2 +(pw/2),g_tool.cntplyr,g_tool.ya/2 - (pw/2));
 }
 
-void 	a_line(int x ,int y,int x1,int y1)
+void 	a_line(float x ,float y,float x1,float y1)
 {
 	float x_inc;
 	float y_inc;
-	int steps;
+	float steps;
 	float  b0;
     float  c0;
 	
@@ -45,9 +46,9 @@ void 	a_line(int x ,int y,int x1,int y1)
 	y_inc = y_inc/steps;
 	b0 = x;
     c0 = y;
-	while (steps--)
+	while ((int)steps--)
 	{
-		g_screen[((int)c0 * g_tool.xa + (int)b0)] = violet;
+		g_screen[((int)nearbyintf(c0) * g_tool.xa + (int)b0)] = violet;
 		b0 += x_inc;
 		c0 += y_inc;
 	}
