@@ -117,5 +117,5 @@ int     is_wall(float x ,float y);
 void    ft_fov(void);
 void    draw_walls(float x,float y);
 float   distance(float x,float y,float x2,float y2);
-void 	a_line(float x ,float y,float x1,float y1);
+void 	a_line(int x ,int y,int x1,int y1);
 #endif 

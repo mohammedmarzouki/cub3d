@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 16:16:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/23 18:44:31 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/24 11:18:42 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void draw_walls(float x,float y)
     //printf("%f||%f||%f\n",d,x,y);
 
 	
-    pw = (g_tool.ts / corr) * (float)(g_tool.xa / 2)/tan(M_PI/3);
+    pw = (g_tool.ts / corr) * (g_tool.xa / 2)/tan(FOV/2);
     pw = pw > g_tool.ya ? g_tool.ya : pw;
     a_line(g_tool.cntplyr,g_tool.ya/2 +(pw/2),g_tool.cntplyr,g_tool.ya/2 - (pw/2));
 }
 
-void 	a_line(float x ,float y,float x1,float y1)
+void 	a_line(int x ,int y,int x1,int y1)
 {
 	float x_inc;
 	float y_inc;

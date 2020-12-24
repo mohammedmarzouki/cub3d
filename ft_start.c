@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/23 18:43:38 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2020/12/24 11:02:25 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void 	draw_line(float x ,float y,float x1,float y1)
 			return;
 		}
 		g_screen[((int)(y* DIV) * g_tool.xa + (int)(x* DIV))] = violet;
-		x += (x_inc / 10);
-		y += (y_inc / 10);
+		x += x_inc;
+		y += y_inc;
 	}
 }
 void ft_circle(int x,int y,int colour)
