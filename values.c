@@ -17,16 +17,16 @@ void    wall(void)
     int x;
     int y;
     
-    x = g_map.nppx / g_tool.ts;
-    y = g_map.nppy / g_tool.ts;
+    x = g_map.nppx / TS;
+    y = g_map.nppy / TS;
     if(!ft_strchr("1 2",g_map.map[y][x]))
     {
-        x = g_map.ppx / g_tool.ts;
-        y = g_map.nppy / g_tool.ts;
+        x = g_map.ppx / TS;
+        y = g_map.nppy / TS;
         if(!ft_strchr("1 2",g_map.map[y][x]))
         {
-            x = g_map.nppx / g_tool.ts;
-            y = g_map.ppy / g_tool.ts;
+            x = g_map.nppx / TS;
+            y = g_map.ppy / TS;
             if(!ft_strchr("1 2",g_map.map[y][x]))
             {                
                 g_map.ppx = g_map.nppx;
@@ -40,10 +40,10 @@ int is_wall(float x ,float y)
     float a;
     float b;
     
-    a = x / g_tool.ts;
-    b = y / g_tool.ts;  
-    x = (x + 1) / g_tool.ts;
-    y = y / g_tool.ts;
+    a = x / TS;
+    b = y / TS;  
+    x = (x + 1) / TS;
+    y = y / TS;
     if(!ft_strchr("1 2",g_map.map[(int)b][(int)a]) && (!ft_strchr("1 2",g_map.map[(int)y][(int)x])))
     {
         return(0);
@@ -78,8 +78,8 @@ void   player_position(int *x, int *y)
         {
             if(ft_strchr("NWSE",g_map.map[i][j]))
             {
-                g_map.ppx = (j*g_tool.ts)+(g_tool.ts/2);
-                g_map.ppy = (i*g_tool.ts)+(g_tool.ts/2);
+                g_map.ppx = (j*TS)+(TS/2);
+                g_map.ppy = (i*TS)+(TS/2);
                 *x = j;
                 *y = i;
                 return;

@@ -21,6 +21,7 @@ int *g_screen;//image array
 #define STP 10
 #define FOV (M_PI / 3)
 #define DIV 0.2
+#define TS 64
 
 float hold;
 
@@ -50,7 +51,6 @@ typedef struct s_tool
     int fflag;//true when floor exist
     int readingmap;//true when reading map
     int cntplyr;//count player
-    int ts;
     t_free vars;
 } t_tool;
 
@@ -71,7 +71,17 @@ typedef struct s_map
     float pdrct;
     float nppx;
     float nppy;
+    float rayd;
+    float wx;
+    float wy;
+    float dis;
+    int down;
+    int up;
+    int left;
+    int right;
 } t_map;
+
+
 
 t_xpm g_xpm;
 t_tool g_tool;

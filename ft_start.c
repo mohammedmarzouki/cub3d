@@ -44,9 +44,9 @@ void 	draw_line(float x ,float y,float x1,float y1)
     // c0 = y;
 	while ((int)steps--)
 	{
-		if(((int)x % g_tool.ts == 0 || (int)y % g_tool.ts == 0 ||
-		(int)x % g_tool.ts == g_tool.ts - 1 ||
-		(int)y % g_tool.ts == g_tool.ts - 1 ) && is_wall(x,y))
+		if(((int)x % TS == 0 || (int)y % TS == 0 ||
+		(int)x % TS == TS - 1 ||
+		(int)y % TS == TS - 1 ) && is_wall(x,y))
 		{
 			//printf("%f-------%f\n",x,y);
 			draw_walls(x,y);
@@ -64,13 +64,13 @@ void ft_circle(int x,int y,int colour)
 	int b ;
 
 	
-	a = x - g_tool.ts;
-	b = y - g_tool.ts;
+	a = x - TS;
+	b = y - TS;
 	k = b;
-	while(a < x + g_tool.ts)
+	while(a < x + TS)
 	{
 		b = k;
-		while(b < y + g_tool.ts)
+		while(b < y + TS)
 		{
 			if(pow((a - x),2)+pow((b - y),2) <= pow(5,2))
 				{
