@@ -19,6 +19,7 @@ void ft_fov(void)
     while(g_map.rayd < g_map.pdrct + (FOV / 2) && g_tool.cntplyr <= g_tool.xa)
     {
         raycast();
+        //draw_walls(g_map.wx,g_map.wy);
         a_line(g_map.ppx,g_map.ppy,g_map.wx,g_map.wy);
         g_map.rayd += FOV/g_tool.xa;
         g_tool.cntplyr++;
@@ -30,10 +31,10 @@ void raycast(void)
     ray_direction();
    float horzHitDistance = (casth())
       ? distance(g_map.ppx, g_map.ppy, g_map.hwx, g_map.hwy)
-       :INT32_MAX;
+       :MAXFLOAT;
    float vertHitDistance = (castv())
        ? distance(g_map.ppx, g_map.ppy, g_map.vwx, g_map.vwy)
-       :INT32_MAX;
+       :MAXFLOAT;
     g_map.wx = (horzHitDistance < vertHitDistance) ? g_map.hwx : g_map.vwx;
     g_map.wy = (horzHitDistance < vertHitDistance) ? g_map.hwy : g_map.vwy;
     g_map.dis = (horzHitDistance < vertHitDistance) ? horzHitDistance : vertHitDistance;

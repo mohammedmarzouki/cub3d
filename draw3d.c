@@ -26,7 +26,7 @@ void draw_walls(float x,float y)
     //printf("%f||%f||%f\n",d,x,y);
 
 	
-    pw = (TS / corr) * (g_tool.xa / 2)/tan(FOV/2);
+    pw = (TS / corr) * (g_tool.xa / 2)/tan(FOV/1.5);
     pw = pw > g_tool.ya ? g_tool.ya : pw;
     a_line(g_tool.cntplyr,g_tool.ya/2 +(pw/2),g_tool.cntplyr,g_tool.ya/2 - (pw/2));
 }
