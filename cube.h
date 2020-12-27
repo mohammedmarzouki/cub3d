@@ -20,10 +20,10 @@ int *g_screen;//image array
 #define D 2
 #define STP 10
 #define FOV (M_PI / 3)
-#define DIV 0.2
+#define DIV 1
 #define TS 64
 
-float hold;
+
 
 typedef struct s_freD
 {
@@ -51,6 +51,8 @@ typedef struct s_tool
     int fflag;//true when floor exist
     int readingmap;//true when reading map
     int cntplyr;//count player
+    int rows;
+    int cols;
     t_free vars;
 } t_tool;
 
@@ -66,19 +68,23 @@ typedef struct s_xpm
 typedef struct s_map
 {
     char **map;
-    float ppx;
-    float ppy;
-    float pdrct;
-    float nppx;
-    float nppy;
-    float rayd;
-    float wx;
-    float wy;
-    float dis;
-    int down;
-    int up;
-    int left;
-    int right;
+    float   ppx;
+    float   ppy;
+    float   pdrct;
+    float   nppx;
+    float   nppy;
+    float   rayd;
+    float   wx;
+    float   wy;
+    float   dis;
+    float   hwx;
+    float   hwy;
+    float   vwx;
+    float   vwy;
+    int     down;
+    int     up;
+    int     left;
+    int     right;
 } t_map;
 
 
@@ -128,4 +134,8 @@ void    ft_fov(void);
 void    draw_walls(float x,float y);
 float   distance(float x,float y,float x2,float y2);
 void 	a_line(int x ,int y,int x1,int y1);
+void raycast(void);
+void ray_direction(void);
+int casth(void);
+int castv(void);
 #endif 

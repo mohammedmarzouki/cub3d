@@ -57,7 +57,9 @@ void    handling_map(int i)
     }
     resizing_map(0,big_len);
     printtwod(g_map.map);
-    check_map_errors(ft_strlen(g_map.map[0]),doublecount(g_map.map));
+    g_tool.cols = ft_strlen(g_map.map[0]);
+    g_tool.rows = doublecount(g_map.map) ; 
+    check_map_errors(g_tool.cols,g_tool.rows);
     if(!g_tool.cntplyr)
         ta_sir("there is no player in the map");
 }

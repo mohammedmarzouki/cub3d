@@ -22,7 +22,7 @@ void draw_walls(float x,float y)
     float pw;
 
     d = distance(g_map.ppx,g_map.ppy,x,y);
-    corr = d * cos(hold - g_map.pdrct);
+    corr = d * cos(g_map.rayd - g_map.pdrct);
     //printf("%f||%f||%f\n",d,x,y);
 
 	
