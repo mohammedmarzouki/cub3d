@@ -14,19 +14,14 @@
 
 void ft_fov(void)
 {
-    // g_map.rayd = g_map.pdrct;
-    // raycast();
-    //     //draw_walls(g_map.wx,g_map.wy);
-    // a_line(g_map.ppx,g_map.ppy,g_map.wx,g_map.wy);
     g_tool.cntplyr = 0;
     g_map.rayd = g_map.pdrct - (FOV / 2);
     float check = g_map.rayd ;
-    while (check < g_map.pdrct + (FOV / 2) && g_tool.cntplyr <= g_tool.xa)
+    while (check < g_map.pdrct + (FOV / 2) && g_tool.cntplyr < g_tool.xa)
     {
         raycast();
         draw_walls(g_map.wx,g_map.wy);
         //a_line(g_map.ppx,g_map.ppy,g_map.wx,g_map.wy);
-        //printf("%f|||||%f   %f   ||   %f  %f  %c\n",g_map.wx,g_map.wy,  g_map.rayd * 180 / M_PI, g_map.ppx, g_map.ppy, g_map.hov);
         g_map.rayd += FOV/g_tool.xa;
         check += FOV/g_tool.xa;
         if(g_map.rayd > (2 * M_PI))
@@ -35,51 +30,32 @@ void ft_fov(void)
             g_map.rayd += 2 * M_PI;
         g_tool.cntplyr++;
     }
-   // printf("-----------------------------------\n");
 }
 
 void raycast(void)
 {
-    float horzHitDistance;
-    float vertHitDistance;
+    float horzhitdistance;
+    float verthitdistance;
 
     ray_direction();
-    horzHitDistance = (casth())
+    horzhitdistance = (casth())
       ? distance(g_map.ppx, g_map.ppy, g_map.hwx, g_map.hwy)
-       :MAXFLOAT;
-    vertHitDistance = (castv())
+       : MAXFLOAT;
+    verthitdistance = (castv())
        ? distance(g_map.ppx, g_map.ppy, g_map.vwx, g_map.vwy)
-       :MAXFLOAT;
-    // if(g_tool.cntplyr < 200)
-    // {
-    //     printf("%f|||||%f\n",g_map.hwx,g_map.vwx);
-    //     printf("%f_____%f\n",g_map.hwy,g_map.vwy);
-    //     printf("%f-----%f\n",horzHitDistance,vertHitDistance);
-    //     printf("------------------------------------------------- \n");
-    // }
-    g_map.wx = (horzHitDistance < vertHitDistance) ? g_map.hwx : g_map.vwx;
-    g_map.wy = (horzHitDistance < vertHitDistance) ? g_map.hwy : g_map.vwy;
-    g_map.dis = (horzHitDistance < vertHitDistance) ? horzHitDistance : vertHitDistance;
-    g_map.hov = (horzHitDistance < vertHitDistance) ? 'h' : 'v';
+       : MAXFLOAT;
+    g_map.wx = (horzhitdistance < verthitdistance) ? g_map.hwx : g_map.vwx;
+    g_map.wy = (horzhitdistance < verthitdistance) ? g_map.hwy : g_map.vwy;
+    g_map.dis = (horzhitdistance < verthitdistance) ? horzhitdistance : verthitdistance;
+    g_map.hov = (horzhitdistance < verthitdistance) ? 1 : 0;
+    
 }
 void ray_direction(void)
 {
-    if(g_map.rayd > 0 && g_map.rayd < M_PI)
-        g_map.down = 1;
-    else
-        g_map.down = 0;
-    if (g_map.down)    
-        g_map.up =  0;
-    else
-        g_map.up =  1;
-    if(g_map.rayd < M_PI/2 || g_map.rayd > 3 * M_PI/2)
-        g_map.right = 1;
-    else
-        g_map.right = 0;
-    if (g_map.right)
-        g_map.left = 0;
-    else
-        g_map.left = 1;
+    g_map.down = (g_map.rayd > 0 && g_map.rayd < M_PI) ? 1 : 0; 
+    g_map.up = (g_map.down)? 0 : 1;
+    g_map.right = (g_map.rayd < M_PI/2 || g_map.rayd > 3 * M_PI/2) ? 1 : 0;
+    g_map.left = (g_map.right) ? 0 : 1;
 }
 int casth(void)
 {

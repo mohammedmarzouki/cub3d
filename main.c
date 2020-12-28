@@ -78,7 +78,7 @@ void looping()
 	int k;
 	
 	g_win = mlx_new_window(g_ptr, g_tool.xa, g_tool.ya, "image");
-	g_image = mlx_new_image(g_ptr,g_tool.xa,g_tool.ya + 1);
+	g_image = mlx_new_image(g_ptr,g_tool.xa,g_tool.ya);
 	g_screen = (int *)mlx_get_data_addr(g_image,&i,&j,&k);
 	mlx_hook(g_win,2,1,try,NULL);
 	mlx_hook(g_win,17,0,end,NULL);

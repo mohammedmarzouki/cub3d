@@ -48,6 +48,7 @@ void	chk_err(char *s, int fd)
 	if (xpm_ptr == NULL)
 		ta_sir("wrong xpm file");
     affect_xpm(xpm_ptr);
+    ptr_wh(h[0],h[1]);
     mlx_destroy_image(g_ptr,xpm_ptr);
     doublefree(g_tool.vars.hold);
 }

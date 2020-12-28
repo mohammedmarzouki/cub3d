@@ -64,10 +64,31 @@ typedef struct s_xpm
     int *ea;
     int *we;
     int *s;
+    int now;
+    int noh;
+    int sow;
+    int soh;
+    int eaw;
+    int eah;
+    int wew;
+    int weh;
+    int sw;
+    int sh;
+
 } t_xpm;
 typedef struct s_map
 {
-    char **map;
+    char    **map;
+    int     *txt;
+    int     down;
+    int     up;
+    int     left;
+    int     right;
+    int     no;
+    int     so;
+    int     ea;
+    int     we;
+    char    hov;
     float   ppx;
     float   ppy;
     float   pdrct;
@@ -81,11 +102,7 @@ typedef struct s_map
     float   hwy;
     float   vwx;
     float   vwy;
-    int     down;
-    int     up;
-    int     left;
-    int     right;
-    char hov;
+
 } t_map;
 
 
@@ -139,4 +156,7 @@ void raycast(void);
 void ray_direction(void);
 int casth(void);
 int castv(void);
+void def_dir(void);
+int find_color(void);
+void    ptr_wh(int x,int y);
 #endif 
