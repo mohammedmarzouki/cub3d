@@ -40,6 +40,8 @@ int is_wall(float x ,float y)
     float a;
     float b;
     
+    // if (x >= g_tool.xa || y >= g_tool.ya)
+    //     return(1);
     a = x / TS;
     b = y / TS;  
     // x = (x + 1) / TS;
