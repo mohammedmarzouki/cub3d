@@ -31,7 +31,7 @@ void draw_walls(float x,float y)
     a_line(g_tool.cntplyr,g_tool.ya/2 +(pw/2),g_tool.cntplyr,g_tool.ya/2 - (pw/2));
 }
 
-void 	a_line(int x ,int y,int x1,int y1)
+void 	a_line(float x ,float y,float x1,float y1)
 {
 	float x_inc;
 	float y_inc;
@@ -48,7 +48,7 @@ void 	a_line(int x ,int y,int x1,int y1)
     c0 = y;
 	while ((int)steps--)
 	{
-		g_screen[((int)c0 * g_tool.xa + (int)b0)] = violet;
+		g_screen[((int)(c0) * g_tool.xa + (int)(b0))] = violet;
 		b0 += x_inc;
 		c0 += y_inc;
 	}

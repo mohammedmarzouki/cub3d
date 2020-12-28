@@ -31,9 +31,9 @@ void square(int x,int y,int lenght,int colour)
         y = yh;
         while(y < lenght + yh)
         {
-            //if(x == xh || y == yh || x == xh + lenght-1|| y == yh + lenght -1)
-			    //g_screen[((int)(y* DIV) * g_tool.xa + (int)(x* DIV))] = 0x000000;
-            //else
+            if(x == xh || y == yh || x == xh + lenght-1|| y == yh + lenght -1)
+			    g_screen[((int)(y* DIV) * g_tool.xa + (int)(x* DIV))] = 0x000000;
+            else
 			    g_screen[((int)(y* DIV) * g_tool.xa + (int)(x* DIV))] = colour;
                 
             //mlx_pixel_put(g_ptr, g_win, x, y, colour);

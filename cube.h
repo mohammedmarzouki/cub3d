@@ -13,14 +13,14 @@ void *g_ptr;//initialisation pointer
 void *g_win;//the window pointer
 void *g_image;//image pointer
 int *g_screen;//image array
-#define violet 0x4502e0
+#define violet 0xabcabc
 #define W 13
 #define S 1
 #define A 0
 #define D 2
 #define STP 10
 #define FOV (M_PI / 3)
-#define DIV 1
+#define DIV 0.1
 #define TS 64
 
 
@@ -85,6 +85,7 @@ typedef struct s_map
     int     up;
     int     left;
     int     right;
+    char hov;
 } t_map;
 
 
@@ -133,7 +134,7 @@ int     is_wall(float x ,float y);
 void    ft_fov(void);
 void    draw_walls(float x,float y);
 float   distance(float x,float y,float x2,float y2);
-void 	a_line(int x ,int y,int x1,int y1);
+void 	a_line(float x ,float y,float x1,float y1);
 void raycast(void);
 void ray_direction(void);
 int casth(void);

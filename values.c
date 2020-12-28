@@ -42,9 +42,9 @@ int is_wall(float x ,float y)
     
     a = x / TS;
     b = y / TS;  
-    x = (x + 1) / TS;
-    y = y / TS;
-    if(!ft_strchr("1 2",g_map.map[(int)b][(int)a]) && (!ft_strchr("1 2",g_map.map[(int)y][(int)x])))
+    // x = (x + 1) / TS;
+    // y = y / TS;
+    if(!ft_strchr("1 2",g_map.map[(int)b][(int)a])) //&& (!ft_strchr("1 2",g_map.map[(int)y][(int)x])))
     {
         return(0);
     }

@@ -14,31 +14,53 @@
 
 void ft_fov(void)
 {
+    // g_map.rayd = g_map.pdrct;
+    // raycast();
+    //     //draw_walls(g_map.wx,g_map.wy);
+    // a_line(g_map.ppx,g_map.ppy,g_map.wx,g_map.wy);
     g_tool.cntplyr = 0;
     g_map.rayd = g_map.pdrct - (FOV / 2);
-    while(g_map.rayd < g_map.pdrct + (FOV / 2) && g_tool.cntplyr <= g_tool.xa)
+    float check = g_map.rayd ;
+    while (check < g_map.pdrct + (FOV / 2) && g_tool.cntplyr <= g_tool.xa)
     {
         raycast();
-        //draw_walls(g_map.wx,g_map.wy);
-        a_line(g_map.ppx,g_map.ppy,g_map.wx,g_map.wy);
+        draw_walls(g_map.wx,g_map.wy);
+        //a_line(g_map.ppx,g_map.ppy,g_map.wx,g_map.wy);
+        //printf("%f|||||%f   %f   ||   %f  %f  %c\n",g_map.wx,g_map.wy,  g_map.rayd * 180 / M_PI, g_map.ppx, g_map.ppy, g_map.hov);
         g_map.rayd += FOV/g_tool.xa;
+        check += FOV/g_tool.xa;
+        if(g_map.rayd > (2 * M_PI))
+            g_map.rayd -= 2 * M_PI;
+        else if (g_map.rayd < 0)
+            g_map.rayd += 2 * M_PI;
         g_tool.cntplyr++;
     }
+   // printf("-----------------------------------\n");
 }
 
 void raycast(void)
 {
+    float horzHitDistance;
+    float vertHitDistance;
+
     ray_direction();
-   float horzHitDistance = (casth())
+    horzHitDistance = (casth())
       ? distance(g_map.ppx, g_map.ppy, g_map.hwx, g_map.hwy)
        :MAXFLOAT;
-   float vertHitDistance = (castv())
+    vertHitDistance = (castv())
        ? distance(g_map.ppx, g_map.ppy, g_map.vwx, g_map.vwy)
        :MAXFLOAT;
+    // if(g_tool.cntplyr < 200)
+    // {
+    //     printf("%f|||||%f\n",g_map.hwx,g_map.vwx);
+    //     printf("%f_____%f\n",g_map.hwy,g_map.vwy);
+    //     printf("%f-----%f\n",horzHitDistance,vertHitDistance);
+    //     printf("------------------------------------------------- \n");
+    // }
     g_map.wx = (horzHitDistance < vertHitDistance) ? g_map.hwx : g_map.vwx;
     g_map.wy = (horzHitDistance < vertHitDistance) ? g_map.hwy : g_map.vwy;
     g_map.dis = (horzHitDistance < vertHitDistance) ? horzHitDistance : vertHitDistance;
-    // wasHitVertical = (vertHitDistance < horzHitDistance)
+    g_map.hov = (horzHitDistance < vertHitDistance) ? 'h' : 'v';
 }
 void ray_direction(void)
 {
@@ -66,42 +88,32 @@ int casth(void)
     float nextHorzTouchX ;
     float nextHorzTouchY ;
 
-    ///////////////////////////////////////////
-    // HORIZONTAL RAY-GRID INTERSECTION CODE //
-    ///////////////////////////////////////////
-
-    // Find the y-coordinate of the closest horizontal grid intersenction
     yintercept = floor(g_map.ppy / TS) * TS;
     yintercept += g_map.down ? TS : 0;
-
-    // Find the x-coordinate of the closest horizontal grid intersection
     xintercept = g_map.ppx + (yintercept - g_map.ppy) / tan(g_map.rayd);
-
-    // Calculate the increment xstep and ystep
     ystep = TS;
     ystep *= g_map.up ? -1 : 1;
-
     xstep = TS / tan(g_map.rayd);
     xstep *= (g_map.left && xstep > 0) ? -1 : 1;
     xstep *= (g_map.right && xstep < 0) ? -1 : 1;
-
     nextHorzTouchX = xintercept;
     nextHorzTouchY = yintercept;
-
-    // Increment xstep and ystep until we find a wall
-    while (nextHorzTouchX >= 0 && nextHorzTouchX <= g_tool.cols * TS && nextHorzTouchY >= 0 && nextHorzTouchY <= g_tool.rows * TS) 
+    while (nextHorzTouchX > 0 && nextHorzTouchX < g_tool.cols * TS
+        && nextHorzTouchY > 0 && nextHorzTouchY < g_tool.rows * TS)
     {
-        if (is_wall(nextHorzTouchX, nextHorzTouchY - (g_map.up ? 1 : 0))) {
+        if (is_wall(nextHorzTouchX, nextHorzTouchY - (g_map.up ? 1 : 0))) 
+        {
             g_map.hwx = nextHorzTouchX;
             g_map.hwy = nextHorzTouchY;
             return (1);
-        } else {
+        } 
+        else 
+        {
             nextHorzTouchX += xstep;
             nextHorzTouchY += ystep;
         }
     }
     return(0);
-
 }
 int castv(void)
 {
@@ -109,36 +121,26 @@ int castv(void)
     float xstep, ystep;
     float nextVertTouchX ;
     float nextVertTouchY ;
-    ///////////////////////////////////////////
-    // VERTICAL RAY-GRID INTERSECTION CODE   //
-    ///////////////////////////////////////////
 
-    // Find the x-coordinate of the closest vertical grid intersenction
     xintercept = floor(g_map.ppx / TS) * TS;
     xintercept += g_map.right ? TS : 0;
-
-    // Find the y-coordinate of the closest vertical grid intersection
     yintercept = g_map.ppy + (xintercept - g_map.ppx) * tan(g_map.rayd);
-
-    // Calculate the increment xstep and ystep
-    xstep = TS;
-    xstep *= g_map.left ? -1 : 1;
-
+    xstep = g_map.left ? -1 * TS : TS;
     ystep = TS * tan(g_map.rayd);
     ystep *= (g_map.up && ystep > 0) ? -1 : 1;
     ystep *= (g_map.down && ystep < 0) ? -1 : 1;
-
     nextVertTouchX = xintercept;
     nextVertTouchY = yintercept;
-
-    // Increment xstep and ystep until we find a wall
     while (nextVertTouchX >= 0 && nextVertTouchX <= g_tool.cols * TS && nextVertTouchY >= 0 && nextVertTouchY <= g_tool.rows * TS) 
     {
-        if (is_wall(nextVertTouchX - (g_map.left ? 1 : 0), nextVertTouchY)) {
+        if (is_wall(nextVertTouchX - (g_map.left ? 1 : 0), nextVertTouchY)) 
+        {
             g_map.vwx = nextVertTouchX;
             g_map.vwy = nextVertTouchY;
             return(1);
-        } else {
+        } 
+        else 
+        {
             nextVertTouchX += xstep;
             nextVertTouchY += ystep;
         }
