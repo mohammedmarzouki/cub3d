@@ -14,9 +14,11 @@
 
 void ft_fov(void)
 {
+    float check;
+
     g_tool.cntplyr = 0;
     g_map.rayd = g_map.pdrct - (FOV / 2);
-    float check = g_map.rayd ;
+    check = g_map.rayd ;
     while (check < g_map.pdrct + (FOV / 2) && g_tool.cntplyr < g_tool.xa)
     {
         raycast();

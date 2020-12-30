@@ -80,6 +80,8 @@ typedef struct s_map
 {
     char    **map;
     int     *txt;
+    int     txth;
+    int     txtw;
     int     down;
     int     up;
     int     left;
@@ -102,7 +104,7 @@ typedef struct s_map
     float   hwy;
     float   vwx;
     float   vwy;
-
+    float   wh;
 } t_map;
 
 
@@ -152,11 +154,12 @@ void    ft_fov(void);
 void    draw_walls(float x,float y);
 float   distance(float x,float y,float x2,float y2);
 void 	a_line(float x ,float y,float x1,float y1);
-void raycast(void);
-void ray_direction(void);
-int casth(void);
-int castv(void);
-void def_dir(void);
-int find_color(void);
+void    raycast(void);
+void    ray_direction(void);
+int     casth(void);
+int     castv(void);
+void    def_dir(void);
+void    find_texture(void);
 void    ptr_wh(int x,int y);
+void    put_texture(int x,int y);
 #endif 

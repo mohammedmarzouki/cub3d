@@ -37,16 +37,17 @@ void    wall(void)
 }
 int is_wall(float x ,float y)
 {
-    float a;
-    float b;
+    int a;
+    int b;
     
-    // if (x >= g_tool.xa || y >= g_tool.ya)
-    //     return(1);
+
     a = x / TS;
-    b = y / TS;  
+    b = y / TS; 
     // x = (x + 1) / TS;
     // y = y / TS;
-    if(!ft_strchr("1 2",g_map.map[(int)b][(int)a])) //&& (!ft_strchr("1 2",g_map.map[(int)y][(int)x])))
+    if (a >= g_tool.cols || b >= g_tool.rows)
+        return(1);
+    if(!ft_strchr("1 2",g_map.map[b][a])) //&& (!ft_strchr("1 2",g_map.map[(int)y][(int)x])))
     {
         return(0);
     }
@@ -55,8 +56,8 @@ int is_wall(float x ,float y)
 void    render(void)
 {
     init_values();
-	drawmap();
-	ft_circle(g_map.ppx, g_map.ppy,trgb(0,g_tool.fr,g_tool.fg,g_tool.fb));
+	// drawmap();
+	// ft_circle(g_map.ppx, g_map.ppy,trgb(0,g_tool.fr,g_tool.fg,g_tool.fb));
 	ft_fov();
     mlx_put_image_to_window(g_ptr, g_win, g_image, 0 ,0 );
 }

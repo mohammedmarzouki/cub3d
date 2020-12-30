@@ -48,6 +48,7 @@ void    handling_map(int i)
 
 
     g_map.map = ft_split(g_tool.vars.carrier,'\n');
+    //free carrier
     big_len = ft_strlen(g_map.map[i]);
     while(g_map.map[i])
     {

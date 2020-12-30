@@ -65,8 +65,8 @@ int try(int x,void *s)
 	g_screen = (int *)mlx_get_data_addr(g_image,&i,&j,&k);
 	correcting_angle();
 	wall();
-	drawmap();
-	ft_circle(g_map.ppx, g_map.ppy,trgb(0,g_tool.fr,g_tool.fg,g_tool.fb));
+	// drawmap();
+	// ft_circle(g_map.ppx, g_map.ppy,trgb(0,g_tool.fr,g_tool.fg,g_tool.fb));
 	ft_fov();
 	mlx_put_image_to_window(g_ptr, g_win, g_image, 0 ,0 );
 	return (0);
@@ -79,6 +79,8 @@ void looping()
 	
 	g_win = mlx_new_window(g_ptr, g_tool.xa, g_tool.ya, "image");
 	g_image = mlx_new_image(g_ptr,g_tool.xa,g_tool.ya);
+	if(g_image == NULL)
+		ta_sir("couldn't make an image");
 	g_screen = (int *)mlx_get_data_addr(g_image,&i,&j,&k);
 	mlx_hook(g_win,2,1,try,NULL);
 	mlx_hook(g_win,17,0,end,NULL);
