@@ -83,6 +83,7 @@ void 	a_line(float x ,float y,float x1,float y1)
 	find_texture();
 	while ((int)steps--)
 	{
+		// printf("%f||||%f\n",b0,c0);
 		put_texture((int)b0,(int)c0);
 		b0 += x_inc;
 		c0 += y_inc;
@@ -95,15 +96,15 @@ void put_texture(int x,int y)
 	int yt;
 	int xx;
 
-	xx = floor(x % TS) + x;
+	xx = x / TS;
 	xt = xx * g_map.txtw / TS;
-	yt = y  * g_map.txth / (int)g_map.wh;
-	printf("%d||%d||%d||%d\n",yt ,(yt * g_map.txtw + xt),xt,(int)g_map.wh);
-	if(yt >= 0 && yt < 64 && xt >= 0 && xt < 64)
-	{
+	yt = (y - (y - (int)g_map.wh) - 1) * g_map.txth / (int)g_map.wh;
+	//  printf("%d||%d||%d||%d\n",yt ,(yt * g_map.txtw + xt),xt,(int)g_map.wh);
+	 if( xt < 64)
+	// {
 		g_screen[( y * g_tool.xa + x)] = g_map.txt[(yt * g_map.txtw + xt)];
 		// printf("jdfkkjsd\n");
-	}
+	// }
 	 	
 
 }
