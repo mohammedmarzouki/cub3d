@@ -89,6 +89,8 @@ void looping()
 }
 int main()
 {
+	// printf("hdbhvjks\n");
+	// sleep(3);
 	//initialize
 	init();
 	ft_gnl();
