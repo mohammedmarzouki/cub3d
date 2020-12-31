@@ -48,6 +48,7 @@ void    handling_map(int i)
 
 
     g_map.map = ft_split(g_tool.vars.carrier,'\n');
+    //free carrier
     big_len = ft_strlen(g_map.map[i]);
     while(g_map.map[i])
     {
@@ -57,7 +58,9 @@ void    handling_map(int i)
     }
     resizing_map(0,big_len);
     printtwod(g_map.map);
-    check_map_errors(ft_strlen(g_map.map[0]),doublecount(g_map.map));
+    g_tool.cols = ft_strlen(g_map.map[0]);
+    g_tool.rows = doublecount(g_map.map) ; 
+    check_map_errors(g_tool.cols,g_tool.rows);
     if(!g_tool.cntplyr)
         ta_sir("there is no player in the map");
 }

@@ -19,7 +19,7 @@ void affect_coulour(char **colour,char c,char **hold)
     i = 0;
     while(i < 3)
     {
-        if(!alldigs(colour[i],ft_strlen(colour[i])))
+        if(!alldigs(colour[i], ft_strlen(colour[i])))
             ta_sir("wrong RGB value , there should be only numbers");
         i++;
     }
@@ -40,4 +40,39 @@ void affect_coulour(char **colour,char c,char **hold)
     else
         ta_sir("colour already taken");
     //free colour and hold
+}
+
+void    ptr_wh(int x,int y)
+{
+    //printf("%d|WH|%d\n",x,y);
+	if (!ft_memcmp(g_tool.vars.hold[0], "NO", 2) )
+    {
+		g_xpm.now = x;
+		g_xpm.noh = y;
+        // printf("%d|NO|%d\n",g_xpm.now,g_xpm.noh);
+    }
+	else if (!ft_memcmp(g_tool.vars.hold[0], "EA", 2) )
+    {
+		g_xpm.eaw = x;
+		g_xpm.eah = y;
+        // printf("%d|EA|%d\n",g_xpm.eaw,g_xpm.eah);
+    }
+	else if (!ft_memcmp(g_tool.vars.hold[0], "SO", 2) )
+    {
+		g_xpm.sow = x;
+		g_xpm.soh = y;
+        // printf("%d|SO|%d\n",g_xpm.sow,g_xpm.soh);
+    }
+	else if (!ft_memcmp(g_tool.vars.hold[0], "WE", 2) )
+    {
+		g_xpm.wew = x;
+		g_xpm.weh = y;
+        // printf("%d|WE|%d\n",g_xpm.wew,g_xpm.weh);
+    }
+	else if (!ft_memcmp(g_tool.vars.hold[0], "S", 1))
+    {
+		g_xpm.sw = x;
+		g_xpm.sh = y;
+        // printf("%d|S|%d\n",g_xpm.sw,g_xpm.sh);
+    }
 }

@@ -31,9 +31,9 @@ void square(int x,int y,int lenght,int colour)
         y = yh;
         while(y < lenght + yh)
         {
-            //if(x == xh || y == yh || x == xh + lenght-1|| y == yh + lenght -1)
-			    //g_screen[((int)(y* DIV) * g_tool.xa + (int)(x* DIV))] = 0x000000;
-            //else
+            if(x == xh || y == yh || x == xh + lenght-1|| y == yh + lenght -1)
+			    g_screen[((int)(y* DIV) * g_tool.xa + (int)(x* DIV))] = 0x000000;
+            else
 			    g_screen[((int)(y* DIV) * g_tool.xa + (int)(x* DIV))] = colour;
                 
             //mlx_pixel_put(g_ptr, g_win, x, y, colour);
@@ -55,9 +55,9 @@ void    drawmap(void)
         while(g_map.map[i][j])
         {
             if(g_map.map[i][j] == '1')
-                square(j*g_tool.ts, i*g_tool.ts, g_tool.ts,trgb(0,g_tool.cr,g_tool.cg,g_tool.cb));
+                square(j*TS, i*TS, TS,trgb(0,g_tool.cr,g_tool.cg,g_tool.cb));
             else
-                square(j*g_tool.ts, i*g_tool.ts, g_tool.ts,trgb(0,g_tool.fr,g_tool.fg,g_tool.fb));
+                square(j*TS, i*TS, TS,trgb(0,g_tool.fr,g_tool.fg,g_tool.fb));
             j++;
         }
         i++;

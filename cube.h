@@ -13,16 +13,17 @@ void *g_ptr;//initialisation pointer
 void *g_win;//the window pointer
 void *g_image;//image pointer
 int *g_screen;//image array
-#define violet 0x4502e0
+#define violet 0xabcabc
 #define W 13
 #define S 1
 #define A 0
 #define D 2
 #define STP 10
 #define FOV (M_PI / 3)
-#define DIV 0.2
+#define DIV 0.1
+#define TS 64
 
-float hold;
+
 
 typedef struct s_freD
 {
@@ -50,7 +51,8 @@ typedef struct s_tool
     int fflag;//true when floor exist
     int readingmap;//true when reading map
     int cntplyr;//count player
-    int ts;
+    int rows;
+    int cols;
     t_free vars;
 } t_tool;
 
@@ -62,16 +64,50 @@ typedef struct s_xpm
     int *ea;
     int *we;
     int *s;
+    int now;
+    int noh;
+    int sow;
+    int soh;
+    int eaw;
+    int eah;
+    int wew;
+    int weh;
+    int sw;
+    int sh;
+
 } t_xpm;
 typedef struct s_map
 {
-    char **map;
-    float ppx;
-    float ppy;
-    float pdrct;
-    float nppx;
-    float nppy;
+    char    **map;
+    int     *txt;
+    int     txth;
+    int     txtw;
+    int     down;
+    int     up;
+    int     left;
+    int     right;
+    int     no;
+    int     so;
+    int     ea;
+    int     we;
+    char    hov;
+    float   ppx;
+    float   ppy;
+    float   pdrct;
+    float   nppx;
+    float   nppy;
+    float   rayd;
+    float   wx;
+    float   wy;
+    float   dis;
+    float   hwx;
+    float   hwy;
+    float   vwx;
+    float   vwy;
+    float   wh;
 } t_map;
+
+
 
 t_xpm g_xpm;
 t_tool g_tool;
@@ -117,5 +153,13 @@ int     is_wall(float x ,float y);
 void    ft_fov(void);
 void    draw_walls(float x,float y);
 float   distance(float x,float y,float x2,float y2);
-void 	a_line(int x ,int y,int x1,int y1);
+void 	a_line(float x ,float y,float x1,float y1);
+void    raycast(void);
+void    ray_direction(void);
+int     casth(void);
+int     castv(void);
+void    def_dir(void);
+void    find_texture(void);
+void    ptr_wh(int x,int y);
+void    put_texture(int x,int y);
 #endif 
