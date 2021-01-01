@@ -107,7 +107,11 @@ void put_texture(float x,float y)
 	if (g_map.hov)
 	{
 		x = (int)x % TS;
+		// x = (x  *TS) ;
+		// x /= g_map.txtw;
+
 		while (i < g_map.wh && inc < (g_map.txth - 1)  && (top < g_tool.ya))
+		// while (top < g_map.wh )//&& inc < (g_map.txth - 1)  && (top < g_tool.ya))
 		{
 			g_screen[(top * g_tool.xa +g_tool.cntplyr)] = g_map.txt[(int)inc * g_map.txtw + (int)x];
 			inc += hold;

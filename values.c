@@ -56,6 +56,7 @@ int is_wall(float x ,float y)
 void    render(void)
 {
     init_values();
+    floor_ceiling();
 	// drawmap();
 	// ft_circle(g_map.ppx, g_map.ppy,trgb(0,g_tool.fr,g_tool.fg,g_tool.fb));
 	ft_fov();

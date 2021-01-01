@@ -65,6 +65,7 @@ int try(int x,void *s)
 	g_screen = (int *)mlx_get_data_addr(g_image,&i,&j,&k);
 	correcting_angle();
 	wall();
+	floor_ceiling();
 	// drawmap();
 	// ft_circle(g_map.ppx, g_map.ppy,trgb(0,g_tool.fr,g_tool.fg,g_tool.fb));
 	ft_fov();
@@ -98,3 +99,5 @@ int main()
 	looping();
 	return(0);
 }
+
+	

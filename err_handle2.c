@@ -32,9 +32,9 @@ void    handling_errors(void)
     if (g_tool.ya > 1440 || g_tool.ya < 0)
         g_tool.ya = 1440;
     if (g_tool.cr > 255 || g_tool.cg > 255 || g_tool.cb > 255)
-        ta_sir("ceiling colors are not correct");
+        ta_sir("ceiling color are not correct");
     if (g_tool.fr > 255 || g_tool.fg > 255 || g_tool.fb > 255)
-        ta_sir("floor colors are not correct");
+        ta_sir("floor color are not correct");
     if(g_tool.readingmap)
         handling_map(0);
     else

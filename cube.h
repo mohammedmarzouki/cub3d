@@ -162,4 +162,5 @@ void    def_dir(void);
 void    find_texture(void);
 void    ptr_wh(int x,int y);
 void    put_texture(float x,float y);
+void    floor_ceiling(void);
 #endif 
