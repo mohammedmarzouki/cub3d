@@ -47,7 +47,7 @@ int is_wall(float x ,float y)
     // y = y / TS;
     if (a >= g_tool.cols || b >= g_tool.rows)
         return(1);
-    if(!ft_strchr("1 2",g_map.map[b][a])) //&& (!ft_strchr("1 2",g_map.map[(int)y][(int)x])))
+    if(!ft_strchr("1 ",g_map.map[b][a])) //&& (!ft_strchr("1 2",g_map.map[(int)y][(int)x])))
     {
         return(0);
     }

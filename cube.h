@@ -18,7 +18,7 @@ int *g_screen;//image array
 #define S 1
 #define A 0
 #define D 2
-#define STP 10
+#define STP 20
 #define FOV (M_PI / 3)
 #define DIV 0.1
 #define TS 64
