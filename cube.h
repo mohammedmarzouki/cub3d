@@ -161,5 +161,5 @@ int     castv(void);
 void    def_dir(void);
 void    find_texture(void);
 void    ptr_wh(int x,int y);
-void    put_texture(int x,int y);
+void    put_texture(float x,float y);
 #endif 

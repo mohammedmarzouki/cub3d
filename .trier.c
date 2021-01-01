@@ -46,10 +46,9 @@ int countchars(char *s ,char c)
 // }
 int main()
 {
-    char **s;
-
-    s = ft_split("c kdfv nelknn fff",' ');
     
     
-    printf("%d\n",countchars("dgrg,sgaa,agrgrgarsgarg",','));
+    printf("jdhzbvmsv\n");
+    sleep(3);
+    printf("othmane\n");
 }
