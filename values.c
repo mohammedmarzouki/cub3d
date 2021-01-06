@@ -39,6 +39,17 @@ int is_wall(float x ,float y)
 {
     int a;
     int b;
+    // float d;
+    // float j;
+    // float i ;
+    // float step;
+    // float xa;
+    // float ya;
+    // float xb;
+    // float yb;
+    // float dish;
+    // float disd;
+
     
 
     a = x / TS;
@@ -47,7 +58,25 @@ int is_wall(float x ,float y)
     // y = y / TS;
     if (a >= g_tool.cols || b >= g_tool.rows)
         return(1);
-    if(!ft_strchr("1 ",g_map.map[b][a])) //&& (!ft_strchr("1 2",g_map.map[(int)y][(int)x])))
+    // if(g_map.map[b][a] == '2')
+    // {
+    //     //printf("%f || %f \n",x,y);
+    //     get_center(&x,&y);
+    //     ft_circle((int)x,(int)y,0xFF0000);
+    //     d = distance(g_map.ppx,g_map.ppy,x,y);
+    //     j = atan(TS/2/d);
+    //     step = sqrt(pow(d,2) + pow(TS/2,2));
+    //     xb = x;
+    //     yb = g_map.ppy;
+    //     dish = distance(xb,yb,x,y);
+    //     disd = distance(g_map.ppx,g_map.ppy,xb,yb);
+    //     i = atan(dish/disd);
+
+    //     ya = y +  sin( j + i + M_PI_2) * TS/2;
+	// 	xa = x +  cos( j + i + M_PI_2) * TS/2;
+    //     draw_line(xa,ya,x,y);
+    // }
+    if(g_map.map[b][a] != '1') //&& (!ft_strchr("1 2",g_map.map[(int)y][(int)x])))
     {
         return(0);
     }
@@ -56,9 +85,10 @@ int is_wall(float x ,float y)
 void    render(void)
 {
     init_values();
-    floor_ceiling();
-	// drawmap();
-	// ft_circle(g_map.ppx, g_map.ppy,trgb(0,g_tool.fr,g_tool.fg,g_tool.fb));
+    // floor_ceiling();
+	drawmap();
+	ft_circle(g_map.ppx, g_map.ppy,trgb(0,g_tool.fr,g_tool.fg,g_tool.fb));
+
 	ft_fov();
     mlx_put_image_to_window(g_ptr, g_win, g_image, 0 ,0 );
 }

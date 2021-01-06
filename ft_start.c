@@ -17,6 +17,7 @@ void init(void)
 	g_ptr = mlx_init();
     g_tool.x = 20;
     g_tool.y = 30;
+	g_tool.sprites = 0;
 	g_tool.readingmap = 0;
 	g_tool.cntplyr = 0;
 	g_xpm.no =  NULL;
@@ -44,14 +45,14 @@ void 	draw_line(float x ,float y,float x1,float y1)
     // c0 = y;
 	while ((int)steps--)
 	{
-		if(((int)x % TS == 0 || (int)y % TS == 0 ||
-		(int)x % TS == TS - 1 ||
-		(int)y % TS == TS - 1 ) && is_wall(x,y))
-		{
-			//printf("%f-------%f\n",x,y);
-			draw_walls(x,y);
-			return;
-		}
+		// if(((int)x % TS == 0 || (int)y % TS == 0 ||
+		// (int)x % TS == TS - 1 ||
+		// (int)y % TS == TS - 1 ) && is_wall(x,y))
+		// {
+		// 	//printf("%f-------%f\n",x,y);
+		// 	draw_walls(x,y);
+		// 	return;
+		// }
 		g_screen[((int)(y* DIV) * g_tool.xa + (int)(x* DIV))] = violet;
 		x += x_inc;
 		y += y_inc;
@@ -72,12 +73,17 @@ void ft_circle(int x,int y,int colour)
 		b = k;
 		while(b < y + TS)
 		{
-			if(pow((a - x),2)+pow((b - y),2) <= pow(5,2))
+			if(pow((a - x),2)+pow((b - y),2) <= pow(20,2))
 				{
-					g_screen[((int)(b* DIV) * g_tool.xa + (int)(a* DIV))] = violet;
+					g_screen[((int)(b* DIV) * g_tool.xa + (int)(a* DIV))] = colour;
 				}
 			b++;
 		}
 		a++;
 	}
+}
+void get_center( float *x, float *y)
+{
+	*x = floor(*x / TS) * TS + TS / 2;
+	*y = floor(*y / TS) * TS + TS / 2;
 }

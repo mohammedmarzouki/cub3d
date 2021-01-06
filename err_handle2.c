@@ -36,7 +36,10 @@ void    handling_errors(void)
     if (g_tool.fr > 255 || g_tool.fg > 255 || g_tool.fb > 255)
         ta_sir("floor color are not correct");
     if(g_tool.readingmap)
+    {
+        countsprites();
         handling_map(0);
+    }
     else
         ta_sir("404 map not found");
 }

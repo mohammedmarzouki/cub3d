@@ -20,8 +20,8 @@ int *g_screen;//image array
 #define D 2
 #define STP 20
 #define FOV (M_PI / 3)
-#define DIV 0.1
-#define TS 64
+#define DIV 1
+#define TS 170
 
 
 
@@ -53,6 +53,7 @@ typedef struct s_tool
     int cntplyr;//count player
     int rows;
     int cols;
+    int sprites;//sprite count
     t_free vars;
 } t_tool;
 
@@ -76,6 +77,15 @@ typedef struct s_xpm
     int sh;
 
 } t_xpm;
+typedef struct s_sprite
+{
+    float   x;
+    float   y;
+    float   d;
+    int     a;
+    int     b;
+}               t_sprite;
+
 typedef struct s_map
 {
     char    **map;
@@ -112,6 +122,7 @@ typedef struct s_map
 t_xpm g_xpm;
 t_tool g_tool;
 t_map g_map;
+//t_sprite g_sp;
 
 void    ft_square(void *ptr,void *win);
 void    init(void);
@@ -163,4 +174,6 @@ void    find_texture(void);
 void    ptr_wh(int x,int y);
 void    put_texture(float x,float y);
 void    floor_ceiling(void);
+void    get_center( float *x, float *y);
+void    countsprites(void);
 #endif 
