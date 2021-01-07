@@ -65,10 +65,13 @@ int try(int x,void *s)
 	g_screen = (int *)mlx_get_data_addr(g_image,&i,&j,&k);
 	correcting_angle();
 	wall();
-	// floor_ceiling();
-	drawmap();
-	ft_circle(g_map.ppx, g_map.ppy,0x00FF00);
+	floor_ceiling();
+	// drawmap();
+	// ft_circle(g_map.ppx, g_map.ppy,0x00FF00);
+	updis();
+	// spinfo();
 	ft_fov();
+	render_sprite();
 	mlx_put_image_to_window(g_ptr, g_win, g_image, 0 ,0 );
 	return (0);
 }
@@ -96,7 +99,8 @@ int main()
 	init();
 	ft_gnl();
 	handling_errors();
-	countsprites();
+	spalloc();
+	init_sprites();
 	looping();
 	return(0);
 }

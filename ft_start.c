@@ -53,7 +53,7 @@ void 	draw_line(float x ,float y,float x1,float y1)
 		// 	draw_walls(x,y);
 		// 	return;
 		// }
-		g_screen[((int)(y* DIV) * g_tool.xa + (int)(x* DIV))] = violet;
+		g_screen[((int)(y* DIV) * g_tool.xa + (int)(x* DIV))] = 0x0000FF;
 		x += x_inc;
 		y += y_inc;
 	}

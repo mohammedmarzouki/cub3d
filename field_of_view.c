@@ -22,8 +22,8 @@ void ft_fov(void)
     while (check < g_map.pdrct + (FOV / 2) && g_tool.cntplyr < g_tool.xa)
     {
         raycast();
-        //draw_walls(g_map.wx,g_map.wy);
-        a_line(g_map.ppx,g_map.ppy,g_map.wx,g_map.wy);
+        draw_walls(g_map.wx,g_map.wy);
+        // a_line(g_map.ppx,g_map.ppy,g_map.wx,g_map.wy);
         g_map.rayd += FOV/g_tool.xa;
         check += FOV/g_tool.xa;
         if(g_map.rayd > (2 * M_PI))

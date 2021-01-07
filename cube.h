@@ -20,8 +20,8 @@ int *g_screen;//image array
 #define D 2
 #define STP 20
 #define FOV (M_PI / 3)
-#define DIV 1
-#define TS 170
+#define DIV 0
+#define TS 64
 
 
 
@@ -77,13 +77,13 @@ typedef struct s_xpm
     int sh;
 
 } t_xpm;
+
 typedef struct s_sprite
 {
     float   x;
     float   y;
     float   d;
-    int     a;
-    int     b;
+    int     fov;
 }               t_sprite;
 
 typedef struct s_map
@@ -122,6 +122,7 @@ typedef struct s_map
 t_xpm g_xpm;
 t_tool g_tool;
 t_map g_map;
+t_sprite *g_sp;
 //t_sprite g_sp;
 
 void    ft_square(void *ptr,void *win);
@@ -176,4 +177,13 @@ void    put_texture(float x,float y);
 void    floor_ceiling(void);
 void    get_center( float *x, float *y);
 void    countsprites(void);
+void    init_sprites(void);
+void    affsp(float x, float y);
+void    spalloc(void);
+void    updis(void);
+void    spinfo(void);
+//////////
+void	draw_one_pixel(int y, int x, double color);
+void	draw_sprites(int x, double distance, double height);
+void	render_sprite(void);
 #endif 

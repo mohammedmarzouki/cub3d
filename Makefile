@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 all :
-	gcc -I /usr/local/include *.c */*.c -lmlx -framework OpenGL -framework AppKit  -O3
+	gcc -I /usr/local/include *.c */*.c -lmlx -framework OpenGL -framework AppKit  
 	./a.out
 deb :
 	gcc -I /usr/local/include *.c */*.c -lmlx -framework OpenGL -framework AppKit -g

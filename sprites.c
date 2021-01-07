@@ -24,14 +24,70 @@ void    countsprites(void)
         i++;
     }
 }
-void    init_sprites(void)
+
+void    updis(void)
 {
+    int i;
+
+    i = 0;
+    while (i < g_tool.sprites)
+    {
+        g_sp[i].d = distance(g_map.ppx,g_map.ppy,g_sp[i].x,g_sp[i].y);
+        i++;
+    }
     
 }
-t_sprite    *spalloc(void)
-{
-    t_sprite *sp;
 
-    sp = malloc(sizeof(t_sprite) * g_tool.sprites);
-    return(sp);
+void    affsp(float x, float y)
+{
+    static int i = 0;
+
+    x *= TS;
+    y *= TS;
+    get_center(&x,&y);
+    g_sp[i].x = x;
+    g_sp[i].y = y;
+    i += 1;
+}
+
+void    init_sprites(void)
+{
+    int x;
+    int y;
+
+    y = 0;
+    if(!g_sp)
+        return;
+    while (g_map.map[y])
+    {
+        x = 0;
+        while (g_map.map[y][x])
+        {
+            if(g_map.map[y][x] == '2')
+                affsp(x,y);
+            x++;
+        }
+        y++;
+    }
+    
+}
+
+void    spalloc(void)
+{
+    g_sp = (t_sprite *)malloc(sizeof(t_sprite) * g_tool.sprites);
+    if(!g_sp)
+        ta_sir("allocation failed");
+}
+
+void    spinfo(void)
+{
+    int i;
+
+    i = 0;
+    while(i < g_tool.sprites)
+    {
+        printf("%f %f || %f \n",g_sp[i].x,g_sp[i].y,g_sp[i].d);
+        i++;
+    }
+    printf("--------------------------------------\n");
 }
