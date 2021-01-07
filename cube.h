@@ -54,6 +54,8 @@ typedef struct s_tool
     int rows;
     int cols;
     int sprites;//sprite count
+    float *wd;
+    int    wi;
     t_free vars;
 } t_tool;
 

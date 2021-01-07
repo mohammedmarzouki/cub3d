@@ -32,6 +32,7 @@ void ft_fov(void)
             g_map.rayd += 2 * M_PI;
         g_tool.cntplyr++;
     }
+    g_tool.wi = 0;
 }
 
 void raycast(void)

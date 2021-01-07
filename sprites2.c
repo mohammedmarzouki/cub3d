@@ -22,7 +22,7 @@ void	draw_sprites(int x, double distance, double height)
         // printf("%d\n",x);
 		j = (g_tool.ya - height) / 2;
 		y_offset = 0;
-		if (i >= 0 && i < g_tool.xa)//&& distance < g_rays[i].distance
+		if (i >= 0 && i < g_tool.xa && distance < g_tool.wd[i])//&& distance < g_rays[i].distance
 		{
 			while (j < (g_tool.ya + height) / 2 - 1)
 			{

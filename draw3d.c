@@ -19,8 +19,10 @@ void draw_walls(float x,float y)
 {
     float d;
     float corr;
-
+	printf("%d\n",g_tool.wi);
     d = distance(g_map.ppx,g_map.ppy,x,y);
+	g_tool.wd[g_tool.wi] = d;
+	g_tool.wi++;
     corr = d * cos(g_map.rayd - g_map.pdrct);
     //printf("%f||%f||%f\n",d,x,y);
     g_map.wh = (TS / corr) * (g_tool.xa / 2)/tan(FOV/1.5);

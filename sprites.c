@@ -75,7 +75,9 @@ void    init_sprites(void)
 void    spalloc(void)
 {
     g_sp = (t_sprite *)malloc(sizeof(t_sprite) * g_tool.sprites);
-    if(!g_sp)
+    g_tool.wd = (float *)malloc(sizeof(float)*g_tool.xa);
+    g_tool.wi = 0;
+    if(!g_sp || !g_tool.wd)
         ta_sir("allocation failed");
 }
 
