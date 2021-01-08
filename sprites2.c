@@ -22,7 +22,7 @@ void	draw_sprites(int x, double distance, double height)
         // printf("%d\n",x);
 		j = (g_tool.ya - height) / 2;
 		y_offset = 0;
-		if (i >= 0 && i < g_tool.xa && distance < g_tool.wd[i])//&& distance < g_rays[i].distance
+		if (i >= 0 && i < g_tool.xa && distance < g_tool.wd[i])
 		{
 			while (j < (g_tool.ya + height) / 2 - 1)
 			{
@@ -86,10 +86,9 @@ void	render_sprite(void)
 			angle = angle + 2 * M_PI;
 		if (angle - (g_map.pdrct - FOV/2) > M_PI)
 			angle = angle - 2 * M_PI;
-		sprite_height = (TS / g_sp[i].d) *
-						(g_tool.xa / 2)/tan(FOV/1.5);
-		column_index = (angle - (g_map.pdrct - FOV/2))
-						/ (FOV / g_tool.xa) - (sprite_height / 2);
+		// printf("%f\n" , angle);
+		sprite_height = (TS / g_sp[i].d) * (g_tool.xa / 2)/tan(FOV/1.5);
+		column_index = (angle - (g_map.pdrct - FOV/2)) / (FOV / g_tool.xa) - (sprite_height / 2);
 		draw_sprites(column_index, g_sp[i].d, sprite_height);
 		i++;
 	}

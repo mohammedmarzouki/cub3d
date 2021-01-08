@@ -19,7 +19,7 @@ void draw_walls(float x,float y)
 {
     float d;
     float corr;
-	printf("%d\n",g_tool.wi);
+	// printf("%d\n",g_tool.wi);
     d = distance(g_map.ppx,g_map.ppy,x,y);
 	g_tool.wd[g_tool.wi] = d;
 	g_tool.wi++;

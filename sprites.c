@@ -81,15 +81,15 @@ void    spalloc(void)
         ta_sir("allocation failed");
 }
 
-void    spinfo(void)
-{
-    int i;
+// void    spinfo(void)
+// {
+//     int i;
 
-    i = 0;
-    while(i < g_tool.sprites)
-    {
-        printf("%f %f || %f \n",g_sp[i].x,g_sp[i].y,g_sp[i].d);
-        i++;
-    }
-    printf("--------------------------------------\n");
-}
+//     i = 0;
+//     while(i < g_tool.sprites)
+//     {
+//         printf("%f %f || %f \n",g_sp[i].x,g_sp[i].y,g_sp[i].d);
+//         i++;
+//     }
+//     printf("--------------------------------------\n");
+// }

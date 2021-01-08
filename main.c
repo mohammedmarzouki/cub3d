@@ -11,38 +11,34 @@
 /* ************************************************************************** */
 
 #include "cube.h"
-void ta_sir(char *s)
+
+void	ta_sir(char *s)
 {
-	write(1,"Error \n",7);
-	ft_putstr_fd(s,1);
-	write(1,"\n",1);
+	write(1, "Error \n", 7);
+	ft_putstr_fd(s, 1);
+	write(1, "\n", 1);
 	exit(0);
 }
 
-int end(int x,void *s)
+int		end(int x, void *s)
 {
-	mlx_destroy_window(g_ptr,g_win);
+	mlx_destroy_window(g_ptr, g_win);
 	exit(0);
 }
 
-int try(int x,void *s)
+int		try(int x, void *s)
 {
-	//w = 13
-	//a = 0
-	//s = 1
-	//d = 2
-	//right = 124
-	//left = 123 
-	int i,j,k;
-	if(x == W)
+	int i;
+
+	if (x == W)
 	{
-		g_map.nppy = g_map.ppy +  sin(g_map.pdrct) * STP;
-		g_map.nppx = g_map.ppx +  cos(g_map.pdrct) * STP;
+		g_map.nppy = g_map.ppy + sin(g_map.pdrct) * STP;
+		g_map.nppx = g_map.ppx + cos(g_map.pdrct) * STP;
 	}
 	if (x == A)
 	{
-		g_map.nppy = g_map.ppy - sin(g_map.pdrct + M_PI/2) * STP;
-		g_map.nppx = g_map.ppx - cos(g_map.pdrct + M_PI/2) * STP;
+		g_map.nppy = g_map.ppy - sin(g_map.pdrct + M_PI / 2) * STP;
+		g_map.nppx = g_map.ppx - cos(g_map.pdrct + M_PI / 2) * STP;
 	}
 	if (x == S)
 	{
@@ -51,58 +47,52 @@ int try(int x,void *s)
 	}
 	if (x == D)
 	{
-		g_map.nppy = g_map.ppy + sin(g_map.pdrct + M_PI/2) * STP;
-		g_map.nppx = g_map.ppx + cos(g_map.pdrct + M_PI/2) * STP;
+		g_map.nppy = g_map.ppy + sin(g_map.pdrct + M_PI / 2) * STP;
+		g_map.nppx = g_map.ppx + cos(g_map.pdrct + M_PI / 2) * STP;
 	}
 	if (x == 53)
 		end(x, s);
 	if (x == 124)
-		g_map.pdrct += M_PI/12;
+		g_map.pdrct += M_PI / 12;
 	if (x == 123)
-		g_map.pdrct -= M_PI/12;
-	mlx_destroy_image(g_ptr,g_image);
-	g_image = mlx_new_image(g_ptr,g_tool.xa,g_tool.ya);
-	g_screen = (int *)mlx_get_data_addr(g_image,&i,&j,&k);
+		g_map.pdrct -= M_PI / 12;
+	mlx_destroy_image(g_ptr, g_image);
+	g_image = mlx_new_image(g_ptr, g_tool.xa, g_tool.ya);
+	g_screen = (int *)mlx_get_data_addr(g_image, &i, &i, &i);
 	correcting_angle();
 	wall();
 	floor_ceiling();
-	// drawmap();
-	// ft_circle(g_map.ppx, g_map.ppy,0x00FF00);
 	updis();
-	// spinfo();
 	ft_fov();
 	render_sprite();
-	mlx_put_image_to_window(g_ptr, g_win, g_image, 0 ,0 );
+	mlx_put_image_to_window(g_ptr, g_win, g_image, 0, 0);
 	return (0);
 }
-void looping()
+
+void	looping(void)
 {
 	int i;
 	int j;
 	int k;
-	
+
 	g_win = mlx_new_window(g_ptr, g_tool.xa, g_tool.ya, "image");
-	g_image = mlx_new_image(g_ptr,g_tool.xa,g_tool.ya);
-	if(g_image == NULL)
+	g_image = mlx_new_image(g_ptr, g_tool.xa, g_tool.ya);
+	if (g_image == NULL)
 		ta_sir("couldn't make an image");
-	g_screen = (int *)mlx_get_data_addr(g_image,&i,&j,&k);
-	mlx_hook(g_win,2,1,try,NULL);
-	mlx_hook(g_win,17,0,end,NULL);
+	g_screen = (int *)mlx_get_data_addr(g_image, &i, &j, &k);
+	mlx_hook(g_win, 2, 1, try, NULL);
+	mlx_hook(g_win, 17, 0, end, NULL);
 	render();
 	mlx_loop(g_ptr);
 }
-int main()
+
+int		main(void)
 {
-	// printf("hdbhvjks\n");
-	// sleep(3);
-	//initialize
 	init();
 	ft_gnl();
 	handling_errors();
 	spalloc();
 	init_sprites();
 	looping();
-	return(0);
+	return (0);
 }
-
-	

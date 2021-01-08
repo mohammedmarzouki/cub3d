@@ -15,8 +15,8 @@
 void init(void)
 {
 	g_ptr = mlx_init();
-    g_tool.x = 20;
-    g_tool.y = 30;
+    // g_tool.x = 20;
+    // g_tool.y = 30;
 	g_tool.sprites = 0;
 	g_tool.readingmap = 0;
 	g_tool.cntplyr = 0;
