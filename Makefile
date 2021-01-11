@@ -26,10 +26,12 @@ SRC = assets/drawdim.c assets/drawmap2d.c assets/err_handle1.c \
 all : $(NAME)
 
 $(NAME) :
-	gcc -o $(NAME) $(WWW) $(SRC) -L $(MLX) 
-deb :
-	gcc -I /usr/local/include *.c */*.c -lmlx -framework OpenGL -framework AppKit -g
-	
-san:
-	gcc -I /usr/local/include *.c */*.c -lmlx -framework OpenGL -framework AppKit -fsanitize=address
-	./a.out
+	@gcc -o $(NAME) $(WWW) $(SRC) -L $(MLX) 
+
+clean :
+	@rm -rf screenshot.bmp
+
+fclean: clean
+	@rm -rf cub3D
+
+re: fclean all
