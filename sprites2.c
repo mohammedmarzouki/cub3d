@@ -1,15 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprites2.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmarzouk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/09 08:57:42 by mmarzouk          #+#    #+#             */
+/*   Updated: 2021/01/09 08:57:48 by mmarzouk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cube.h"
 
-void	draw_one_pixel(int y, int x, double color)
+void			draw_one_pixel(int y, int x, double color)
 {
 	if (y < g_tool.ya && y >= 0 && color != 0x000000)
-    {
+	{
 		g_screen[(y) * g_tool.xa + (x)] = color;
-    }
+	}
 }
 
-void	draw_sprites(int x, double distance, double height)
+void			draw_sprites(int x, double distance, double height)
 {
 	int i;
 	int j;
@@ -19,17 +30,14 @@ void	draw_sprites(int x, double distance, double height)
 	i = x;
 	while (i <= x + height)
 	{
-        // printf("%d\n",x);
 		j = (g_tool.ya - height) / 2;
 		y_offset = 0;
 		if (i >= 0 && i < g_tool.xa && distance < g_tool.wd[i])
 		{
 			while (j < (g_tool.ya + height) / 2 - 1)
 			{
-				color = g_xpm.s[(int)
-				(y_offset / height * g_xpm.sh)
-				* g_xpm.sw +
-				(int)((i - x) / height * g_xpm.sw)];
+				color = g_xpm.s[(int)(y_offset / height * g_xpm.sh)
+					* g_xpm.sw + (int)((i - x) / height * g_xpm.sw)];
 				draw_one_pixel(j, i, color);
 				j++;
 				y_offset++;
@@ -39,7 +47,7 @@ void	draw_sprites(int x, double distance, double height)
 	}
 }
 
-static  void	swap(int i)
+static	void	swap(int i)
 {
 	t_sprite tmp;
 
@@ -51,7 +59,7 @@ static  void	swap(int i)
 	}
 }
 
-static  void	sort_sprites(void)
+static	void	sort_sprites(void)
 {
 	int	i;
 	int	j;
@@ -69,7 +77,7 @@ static  void	sort_sprites(void)
 	}
 }
 
-void	render_sprite(void)
+void			render_sprite(void)
 {
 	double		angle;
 	double		sprite_height;
@@ -80,15 +88,15 @@ void	render_sprite(void)
 	i = 0;
 	while (i < g_tool.sprites)
 	{
-		g_sp[i].d = distance(g_map.ppx,g_map.ppy,g_sp[i].x, g_sp[i].y);
+		g_sp[i].d = distance(g_map.ppx, g_map.ppy, g_sp[i].x, g_sp[i].y);
 		angle = atan2(g_sp[i].y - g_map.ppy, g_sp[i].x - g_map.ppx);
-		if ((g_map.pdrct - FOV/2) - angle > M_PI)
+		if ((g_map.pdrct - FOV / 2) - angle > M_PI)
 			angle = angle + 2 * M_PI;
-		if (angle - (g_map.pdrct - FOV/2) > M_PI)
+		if (angle - (g_map.pdrct - FOV / 2) > M_PI)
 			angle = angle - 2 * M_PI;
-		// printf("%f\n" , angle);
-		sprite_height = (TS / g_sp[i].d) * (g_tool.xa / 2)/tan(FOV/1.5);
-		column_index = (angle - (g_map.pdrct - FOV/2)) / (FOV / g_tool.xa) - (sprite_height / 2);
+		sprite_height = (TS / g_sp[i].d) * (g_tool.xa / 2) / tan(FOV / 1.5);
+		column_index = (angle - (g_map.pdrct - FOV / 2)) /
+			(FOV / g_tool.xa) - (sprite_height / 2);
 		draw_sprites(column_index, g_sp[i].d, sprite_height);
 		i++;
 	}

@@ -46,6 +46,7 @@ typedef struct	s_free
 
 typedef	struct	s_tool
 {
+	int			save;
 	int			xa;
 	int			ya;
 	int			cr;
@@ -125,6 +126,18 @@ typedef struct	s_map
 	float		wh;
 }				t_map;
 
+typedef struct	s_header{
+	int			file_size;
+	int			off_bits;
+	int			size;
+	int			info_size;
+	int			planes;
+	int			bit_count;
+	int			image_size;
+	int			width_in_bytes;
+	int			fd;
+}				t_header;
+
 t_xpm			g_xpm;
 t_tool			g_tool;
 t_map			g_map;
@@ -132,7 +145,7 @@ t_sprite		*g_sp;
 
 void			ft_square(void *ptr, void *win);
 void			init(void);
-void			ft_gnl(void);
+void			ft_gnl(int fd);
 int				checking(char *cub);
 void			ft_circle(int a, int b, int colour);
 int				end(int x, void *s);
@@ -148,8 +161,6 @@ void			affect_coulour(char **colour, char c, char **hold);
 int				reversecheck(char *s, char *str);
 void			other(char *s, int fd);
 int				alldone(void);
-int				alldone(void);
-int				alldone(void);
 void			affect_xpm(void	*xpm_ptr);
 int				itismap(char *s);
 int				allspaces(char *s);
@@ -158,10 +169,8 @@ void			handling_errors(void);
 void			handling_map(int i);
 void			resizing_map(int i, int big_len);
 void			check_map_errors(int max_x, int max_y);
-void			drawmap(void);
 int				trgb(int t, int r, int g, int b);
 void			square(int x, int y, int lenght, int colour);
-void			drawplayer(void);
 void			draw_line(float x, float y, float x1, float y1);
 void			init_values(void);
 void			render(void);
@@ -172,7 +181,6 @@ int				is_wall(float x, float y);
 void			ft_fov(void);
 void			draw_walls(float x, float y);
 float			distance(float x, float y, float x2, float y2);
-void			a_line(float x, float y, float x1, float y1);
 void			raycast(void);
 void			ray_direction(void);
 int				casth(void);
@@ -188,9 +196,12 @@ void			init_sprites(void);
 void			affsp(float x, float y);
 void			spalloc(void);
 void			updis(void);
-void			spinfo(void);
 void			draw_one_pixel(int y, int x, double color);
 void			draw_sprites(int x, double distance, double height);
 void			render_sprite(void);
+int				chk_file(char *f);
+void			save_flag(char *s);
+int				same(char *s1,char *s2);
+void			make_a_bmp(void);
 
 #endif

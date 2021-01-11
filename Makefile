@@ -12,7 +12,7 @@
 
 all :
 	gcc -I /usr/local/include *.c */*.c -lmlx -framework OpenGL -framework AppKit  
-	./a.out
+	./a.out map3.cub --save
 deb :
 	gcc -I /usr/local/include *.c */*.c -lmlx -framework OpenGL -framework AppKit -g
 	

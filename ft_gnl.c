@@ -12,61 +12,68 @@
 
 #include "cube.h"
 
-int startswith(char c1,char c2,char *s)
+int		startswith(char c1, char c2, char *s)
 {
-    if(!c2)
-    {
-        if(s[0]==c1)
-            return (1);
-    }
-    if(s[0] == c1 && s[1] == c2)
-        return (1); 
-    return(0);
+	if (!c2)
+	{
+		if (s[0] == c1)
+			return (1);
+	}
+	if (s[0] == c1 && s[1] == c2)
+		return (1);
+	return (0);
 }
-void valid_line(char *s, int fd)
+
+void	valid_line(char *s, int fd)
 {
-    if(!ft_strncmp(s, "NO", 2) && s[2] == ' ')
-        chk_err(s, fd);
-    else if(!ft_strncmp(s, "SO", 2) && s[2] == ' ')
-        chk_err(s, fd);
-    else if(!ft_strncmp(s, "WE", 2) && s[2] == ' ')
-        chk_err(s, fd);
-    else if(!ft_strncmp(s, "EA", 2) && s[2] == ' ')
-        chk_err(s, fd);
-    else if(!ft_strncmp(s, "S", 1) && s[1] == ' ')
-        chk_err(s, fd);
-    else if(!ft_strncmp(s, "R", 1) && s[1] == ' ')
-        chk_resolution(s, fd);
-    else if(!strncmp(s, "C", 1) && s[1] == ' ')
-        chk_cf(s, fd);
-    else if(startswith('F', 0, s) && s[1] == ' ')
-        chk_cf(s, fd);
-    else
-        other(s,fd);
-    
+	if (!ft_strncmp(s, "NO", 2) && s[2] == ' ')
+		chk_err(s, fd);
+	else if (!ft_strncmp(s, "SO", 2) && s[2] == ' ')
+		chk_err(s, fd);
+	else if (!ft_strncmp(s, "WE", 2) && s[2] == ' ')
+		chk_err(s, fd);
+	else if (!ft_strncmp(s, "EA", 2) && s[2] == ' ')
+		chk_err(s, fd);
+	else if (!ft_strncmp(s, "S", 1) && s[1] == ' ')
+		chk_err(s, fd);
+	else if (!ft_strncmp(s, "R", 1) && s[1] == ' ')
+		chk_resolution(s, fd);
+	else if (!strncmp(s, "C", 1) && s[1] == ' ')
+		chk_cf(s, fd);
+	else if (startswith('F', 0, s) && s[1] == ' ')
+		chk_cf(s, fd);
+	else
+		other(s, fd);
 }
-void ft_gnl(void)
+
+void	ft_gnl(int fd)
 {
-    int fd;
-    int i;
-    char *line;
+	int		i;
+	char	*line;
 
-    
-    fd = open("map3.cub",O_RDONLY);
-    i = 1;
+	i = 1;
+	while (i)
+	{
+		i = get_next_line(fd, &line);
+		if (i < 0)
+			ta_sir("file descriptor problem ");
+		else
+		{
+			valid_line(line, fd);
+			free(line);
+		}
+	}
+	close(fd);
+}
 
-    while(i)
-    {
-        i = get_next_line(fd,&line);
-        if (i < 0)
-            ta_sir("file descriptor problem ");
-        else
-        {
-            valid_line(line, fd);
-            free (line);
-        }
-        
-    }
-    close (fd);
-    //printf("***%s***\n",g_tool.vars.carrier);
+int				chk_file(char *f)
+{
+	int fd;
+
+	if (!reversecheck(f,".cub"))
+		ta_sir("file extention should be .cub");
+	fd = open(f, O_RDONLY);
+	if (fd < 0)
+		ta_sir("file does not open");
+	return (fd);
 }

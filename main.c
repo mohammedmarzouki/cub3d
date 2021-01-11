@@ -86,13 +86,22 @@ void	looping(void)
 	mlx_loop(g_ptr);
 }
 
-int		main(void)
+int		main(int argc, char **argv)
 {
+	int fd;
+	if (argc != 2 && argc != 3)
+		ta_sir("wrong number of arguments");
+	fd = chk_file(argv[1]);
 	init();
-	ft_gnl();
+	ft_gnl(fd);
 	handling_errors();
 	spalloc();
 	init_sprites();
+	if(argc == 3)
+	{
+		
+		save_flag(argv[2]);
+	}
 	looping();
 	return (0);
 }
