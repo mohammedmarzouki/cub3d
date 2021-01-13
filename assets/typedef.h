@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 15:33:44 by mmarzouk          #+#    #+#             */
-/*   Updated: 2021/01/11 18:14:23 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2021/01/13 14:49:23 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,16 +102,9 @@ typedef struct	s_map
 	float		wh;
 }				t_map;
 
-typedef struct	s_header{
-	int			file_size;
-	int			off_bits;
-	int			size;
-	int			info_size;
-	int			planes;
-	int			bit_count;
-	int			image_size;
-	int			width_in_bytes;
-	int			fd;
-}				t_header;
+typedef struct	s_bmp{
+	int			image_s;
+	int			width_bytes;
+}				t_bmp;
 
 #endif

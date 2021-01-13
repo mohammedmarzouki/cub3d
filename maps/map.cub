@@ -3,7 +3,7 @@ NO ./xpms/wall7.xpm
 SO ./xpms/wall9.xpm
 WE ./xpms/wall10.xpm
 EA ./xpms/wall8.xpm
-S ./xpms/sprite.xpm
+S ./xpms/barrel.xpm
 F 255,255,255 
 C  90,65,54
 
@@ -15,7 +15,7 @@ C  90,65,54
 100001
 100001
 100001
-100001
+120001
 100001
 100001
 100001

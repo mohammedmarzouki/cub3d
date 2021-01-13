@@ -6,13 +6,13 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 09:25:57 by mmarzouk          #+#    #+#             */
-/*   Updated: 2021/01/11 18:13:55 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2021/01/13 15:09:35 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-char	*make_header(t_header *values)
+char	*make_header(t_bmp *values)
 {
 	char	*header;
 	int		i;
@@ -20,10 +20,10 @@ char	*make_header(t_header *values)
 	if (!(header = malloc(54)))
 		ta_sir("allocation failed");
 	ft_memset(header, 0, 54);
-	values->width_in_bytes = (g_tool.xa * 24 + 31) / 32 * 4;
-	values->image_size = values->width_in_bytes * g_tool.ya;
+	values->width_bytes = (g_tool.xa * 24 + 31) / 32 * 4;
+	values->image_s = values->width_bytes * g_tool.ya;
 	ft_memcpy(header, "BM", 2);
-	i = values->image_size + 54;
+	i = values->image_s + 54;
 	ft_memcpy(header + 2, &i, 4);
 	i = 54;
 	ft_memcpy(header + 10, &i, 4);
@@ -51,14 +51,14 @@ int		*hex_to_rgb(int hex)
 	return (rgb);
 }
 
-char	*make_image(t_header *values)
+char	*make_image(t_bmp *values)
 {
 	char	*buf;
 	int		i;
 	int		j;
 	int		*colors;
 
-	buf = malloc(values->image_size);
+	buf = malloc(values->image_s);
 	i = g_tool.ya - 1;
 	while (i > 0)
 	{
@@ -67,9 +67,9 @@ char	*make_image(t_header *values)
 		{
 			colors = hex_to_rgb(g_screen[((g_tool.ya - i)
 			* g_tool.xa) + j]);
-			buf[i * values->width_in_bytes + j * 3 + 2] = colors[0];
-			buf[i * values->width_in_bytes + j * 3 + 1] = colors[1];
-			buf[i * values->width_in_bytes + j * 3 + 0] = colors[2];
+			buf[i * values->width_bytes + j * 3 + 2] = colors[0];
+			buf[i * values->width_bytes + j * 3 + 1] = colors[1];
+			buf[i * values->width_bytes + j * 3 + 0] = colors[2];
 			free(colors);
 			j++;
 		}
@@ -80,7 +80,7 @@ char	*make_image(t_header *values)
 
 void	make_a_bmp(void)
 {
-	t_header	values;
+	t_bmp		values;
 	char		*header;
 	char		*img;
 	int			fd;
@@ -89,7 +89,7 @@ void	make_a_bmp(void)
 	img = make_image(&values);
 	fd = open("./screenshot.bmp", O_WRONLY | O_CREAT, 0x1A4);
 	write(fd, header, 54);
-	write(fd, img, values.image_size);
+	write(fd, img, values.image_s);
 	free(header);
 	free(img);
 }

@@ -6,20 +6,12 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2021/01/13 14:05:55 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2021/01/13 14:55:23 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 #include "global.h"
-
-void	ta_sir(char *s)
-{
-	write(1, "Error \n", 7);
-	ft_putstr_fd(s, 1);
-	write(1, "\n", 1);
-	exit(0);
-}
 
 int		end(int x, void *s)
 {
@@ -29,10 +21,8 @@ int		end(int x, void *s)
 	exit(0);
 }
 
-int		try(int x, void *s)
+void	x_bouton(int x)
 {
-	int i;
-
 	if (x == W)
 	{
 		g_map.nppy = g_map.ppy + sin(g_map.pdrct) * STP;
@@ -53,6 +43,13 @@ int		try(int x, void *s)
 		g_map.nppy = g_map.ppy + sin(g_map.pdrct + M_PI / 2) * STP;
 		g_map.nppx = g_map.ppx + cos(g_map.pdrct + M_PI / 2) * STP;
 	}
+}
+
+int		try(int x, void *s)
+{
+	int i;
+
+	x_bouton(x);
 	if (x == 53)
 		end(x, s);
 	if (x == 124)
@@ -78,7 +75,7 @@ void	looping(void)
 	int j;
 	int k;
 
-	g_win = mlx_new_window(g_ptr, g_tool.xa, g_tool.ya, "image");
+	g_win = mlx_new_window(g_ptr, g_tool.xa, g_tool.ya, "cub3D");
 	g_image = mlx_new_image(g_ptr, g_tool.xa, g_tool.ya);
 	if (g_image == NULL)
 		ta_sir("couldn't make an image");

@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:16:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/22 20:35:40 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2021/01/13 14:33:50 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	raycast(void)
 	float vhd;
 
 	ray_direction();
-	hhd = (casth())
+	hhd = (casth(0.0, 0.0, 0.0, 0.0))
 		? distance(g_map.ppx, g_map.ppy, g_map.hwx, g_map.hwy)
 		: MAXFLOAT;
-	vhd = (castv())
+	vhd = (castv(0.0, 0.0, 0.0, 0.0))
 		? distance(g_map.ppx, g_map.ppy, g_map.vwx, g_map.vwy)
 		: MAXFLOAT;
 	g_map.wx = (hhd < vhd) ? g_map.hwx : g_map.vwx;
@@ -60,15 +60,8 @@ void	ray_direction(void)
 	g_map.left = (g_map.right) ? 0 : 1;
 }
 
-int		casth(void)
+int		casth(float xintercept, float yintercept, float xstep, float ystep)
 {
-	float xintercept;
-	float yintercept;
-	float xstep;
-	float ystep;
-	float nhtx;
-	float nhty;
-
 	yintercept = floor(g_map.ppy / TS) * TS;
 	yintercept += g_map.down ? TS : 0;
 	xintercept = g_map.ppx + (yintercept - g_map.ppy) / tan(g_map.rayd);
@@ -77,35 +70,26 @@ int		casth(void)
 	xstep = TS / tan(g_map.rayd);
 	xstep *= (g_map.left && xstep > 0) ? -1 : 1;
 	xstep *= (g_map.right && xstep < 0) ? -1 : 1;
-	nhtx = xintercept;
-	nhty = yintercept;
-	while (nhtx > 0 && nhtx < g_tool.cols * TS
-		&& nhty > 0 && nhty < g_tool.rows * TS)
+	while (xintercept > 0 && xintercept < g_tool.cols * TS
+		&& yintercept > 0 && yintercept < g_tool.rows * TS)
 	{
-		if (is_wall(nhtx, nhty - (g_map.up ? 1 : 0)))
+		if (is_wall(xintercept, yintercept - (g_map.up ? 1 : 0)))
 		{
-			g_map.hwx = nhtx;
-			g_map.hwy = nhty;
+			g_map.hwx = xintercept;
+			g_map.hwy = yintercept;
 			return (1);
 		}
 		else
 		{
-			nhtx += xstep;
-			nhty += ystep;
+			xintercept += xstep;
+			yintercept += ystep;
 		}
 	}
 	return (0);
 }
 
-int		castv(void)
+int		castv(float xintercept, float yintercept, float xstep, float ystep)
 {
-	float xintercept;
-	float yintercept;
-	float xstep;
-	float ystep;
-	float nvtx;
-	float nvty;
-
 	xintercept = floor(g_map.ppx / TS) * TS;
 	xintercept += g_map.right ? TS : 0;
 	yintercept = g_map.ppy + (xintercept - g_map.ppx) * tan(g_map.rayd);
@@ -113,21 +97,19 @@ int		castv(void)
 	ystep = TS * tan(g_map.rayd);
 	ystep *= (g_map.up && ystep > 0) ? -1 : 1;
 	ystep *= (g_map.down && ystep < 0) ? -1 : 1;
-	nvtx = xintercept;
-	nvty = yintercept;
-	while (nvtx >= 0 && nvtx <= g_tool.cols * TS &&
-		nvty >= 0 && nvty <= g_tool.rows * TS)
+	while (xintercept >= 0 && xintercept <= g_tool.cols * TS &&
+		yintercept >= 0 && yintercept <= g_tool.rows * TS)
 	{
-		if (is_wall(nvtx - (g_map.left ? 1 : 0), nvty))
+		if (is_wall(xintercept - (g_map.left ? 1 : 0), yintercept))
 		{
-			g_map.vwx = nvtx;
-			g_map.vwy = nvty;
+			g_map.vwx = xintercept;
+			g_map.vwy = yintercept;
 			return (1);
 		}
 		else
 		{
-			nvtx += xstep;
-			nvty += ystep;
+			xintercept += xstep;
+			yintercept += ystep;
 		}
 	}
 	return (0);

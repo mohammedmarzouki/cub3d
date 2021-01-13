@@ -6,11 +6,19 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/23 18:30:41 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2021/01/13 14:44:38 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+void	ta_sir(char *s)
+{
+	write(1, "Error \n", 7);
+	ft_putstr_fd(s, 1);
+	write(1, "\n", 1);
+	exit(0);
+}
 
 int		trgb(int t, int r, int g, int b)
 {

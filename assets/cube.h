@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 16:13:21 by mmarzouk          #+#    #+#             */
-/*   Updated: 2021/01/13 14:22:22 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2021/01/13 15:10:07 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,10 @@ void			draw_walls(float x, float y);
 float			distance(float x, float y, float x2, float y2);
 void			raycast(void);
 void			ray_direction(void);
-int				casth(void);
-int				castv(void);
+int				casth(float xintercept, float yintercept,
+					float xstep, float ystep);
+int				castv(float xintercept, float yintercept,
+					float xstep, float ystep);
 void			def_dir(void);
 void			find_texture(void);
 void			ptr_wh(int x, int y);
@@ -82,8 +84,8 @@ void			init_sprites(void);
 void			affsp(float x, float y);
 void			spalloc(void);
 void			updis(void);
-void			draw_one_pixel(int y, int x, double color);
-void			draw_sprites(int x, float distance, float height);
+void			draw_one_pixel(int y, int x, float color);
+void			draw_a_sprite(int x, float dis, float sp_height);
 void			render_sprite(void);
 int				chk_file(char *f);
 void			save_flag(char *s);
@@ -109,4 +111,6 @@ char			*ft_strch(const char *str, int c);
 char			*ft_subst(char const *s, unsigned int start, size_t len);
 int				get_next_line(int fd, char **line);
 void			vertic(float y, int top, float hold, float inc);
+void			map_errors_again(int max_x, int max_y);
+void			x_bouton(int x);
 #endif

@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 11:16:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/10 11:07:03 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2021/01/13 14:38:34 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,14 @@ void	check_map_errors(int max_x, int max_y)
 		}
 		x++;
 	}
+	map_errors_again(max_x, max_y);
+}
+
+void	map_errors_again(int max_x, int max_y)
+{
+	int x;
+	int y;
+
 	x = 0;
 	y = 0;
 	while (y < max_y)
