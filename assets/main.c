@@ -6,11 +6,12 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/22 20:38:59 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2021/01/13 14:05:55 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+#include "global.h"
 
 void	ta_sir(char *s)
 {
@@ -22,6 +23,8 @@ void	ta_sir(char *s)
 
 int		end(int x, void *s)
 {
+	(void)x;
+	(void)s;
 	mlx_destroy_window(g_ptr, g_win);
 	exit(0);
 }
@@ -89,6 +92,7 @@ void	looping(void)
 int		main(int argc, char **argv)
 {
 	int fd;
+
 	if (argc != 2 && argc != 3)
 		ta_sir("wrong number of arguments");
 	fd = chk_file(argv[1]);
@@ -97,11 +101,8 @@ int		main(int argc, char **argv)
 	handling_errors();
 	spalloc();
 	init_sprites();
-	if(argc == 3)
-	{
-		
+	if (argc == 3)
 		save_flag(argv[2]);
-	}
 	looping();
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/13 13:26:54 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2021/01/13 14:07:19 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,26 @@ int		startswith(char c1, char c2, char *s)
 	return (0);
 }
 
-void	valid_line(char *s, int fd)
+void	valid_line(char *s)
 {
 	if (!ft_strncmp(s, "NO", 2) && s[2] == ' ')
-		chk_err(s, fd);
+		chk_err(s);
 	else if (!ft_strncmp(s, "SO", 2) && s[2] == ' ')
-		chk_err(s, fd);
+		chk_err(s);
 	else if (!ft_strncmp(s, "WE", 2) && s[2] == ' ')
-		chk_err(s, fd);
+		chk_err(s);
 	else if (!ft_strncmp(s, "EA", 2) && s[2] == ' ')
-		chk_err(s, fd);
+		chk_err(s);
 	else if (!ft_strncmp(s, "S", 1) && s[1] == ' ')
-		chk_err(s, fd);
+		chk_err(s);
 	else if (!ft_strncmp(s, "R", 1) && s[1] == ' ')
-		chk_resolution(s, fd);
+		chk_resolution(s);
 	else if (!ft_strncmp(s, "C", 1) && s[1] == ' ')
-		chk_cf(s, fd);
+		chk_cf(s);
 	else if (startswith('F', 0, s) && s[1] == ' ')
-		chk_cf(s, fd);
+		chk_cf(s);
 	else
-		other(s, fd);
+		other(s);
 }
 
 void	ft_gnl(int fd)
@@ -59,18 +59,18 @@ void	ft_gnl(int fd)
 			ta_sir("file descriptor problem ");
 		else
 		{
-			valid_line(line, fd);
+			valid_line(line);
 			free(line);
 		}
 	}
 	close(fd);
 }
 
-int				chk_file(char *f)
+int		chk_file(char *f)
 {
 	int fd;
 
-	if (!reversecheck(f,".cub"))
+	if (!reversecheck(f, ".cub"))
 		ta_sir("file extention should be .cub");
 	fd = open(f, O_RDONLY);
 	if (fd < 0)

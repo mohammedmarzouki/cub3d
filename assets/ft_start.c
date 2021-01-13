@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/24 11:02:25 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2021/01/13 14:09:54 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,22 @@ void	init_values(void)
 		g_map.pdrct = M_PI;
 	else if (g_map.map[i][j] == 'E')
 		g_map.pdrct = 0;
+}
+
+void	vertic(float y, int top, float hold)
+{
+	float	inc;
+	int		i;
+
+	inc = 0;
+	i = 0;
+	y = (int)y % TS;
+	while (i < g_map.wh && inc < (g_map.txth - 1) && (top < g_tool.ya))
+	{
+		g_screen[(top * g_tool.xa + g_tool.cntplyr)] =
+			g_map.txt[(int)inc * g_map.txtw + (int)y];
+		inc += hold;
+		i++;
+		top++;
+	}
 }

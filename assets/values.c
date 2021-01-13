@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/09 08:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/23 18:37:26 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2021/01/13 14:04:46 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	render(void)
 	updis();
 	ft_fov();
 	render_sprite();
-	if(g_tool.save)
+	if (g_tool.save)
 	{
 		make_a_bmp();
 		exit(0);

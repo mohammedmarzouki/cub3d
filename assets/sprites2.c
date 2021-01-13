@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprites2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarzouk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 08:57:42 by mmarzouk          #+#    #+#             */
-/*   Updated: 2021/01/09 08:57:48 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2021/01/11 16:21:22 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			draw_one_pixel(int y, int x, double color)
 	}
 }
 
-void			draw_sprites(int x, double distance, double height)
+void			draw_sprites(int x, float distance, float height)
 {
 	int i;
 	int j;
@@ -79,8 +79,8 @@ static	void	sort_sprites(void)
 
 void			render_sprite(void)
 {
-	double		angle;
-	double		sprite_height;
+	float		angle;
+	float		sprite_height;
 	int			column_index;
 	int			i;
 
@@ -88,7 +88,6 @@ void			render_sprite(void)
 	i = 0;
 	while (i < g_tool.sprites)
 	{
-		g_sp[i].d = distance(g_map.ppx, g_map.ppy, g_sp[i].x, g_sp[i].y);
 		angle = atan2(g_sp[i].y - g_map.ppy, g_sp[i].x - g_map.ppx);
 		if ((g_map.pdrct - FOV / 2) - angle > M_PI)
 			angle = angle + 2 * M_PI;

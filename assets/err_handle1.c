@@ -12,7 +12,7 @@
 
 #include "cube.h"
 
-void	chk_cf(char *s, int fd)
+void	chk_cf(char *s)
 {
 	g_tool.vars.hold = ft_split(s, ' ');
 	if (doublecount(g_tool.vars.hold) == 2)
@@ -21,7 +21,7 @@ void	chk_cf(char *s, int fd)
 		{
 			g_tool.vars.colour = ft_split(g_tool.vars.hold[1], ',');
 			if (doublecount(g_tool.vars.colour) == 3)
-				affect_coulour(g_tool.vars.colour, s[0], g_tool.vars.hold);
+				affect_coulour(g_tool.vars.colour, s[0]);
 			else
 				ta_sir("the RGB is in a wrong format");
 		}
@@ -34,7 +34,7 @@ void	chk_cf(char *s, int fd)
 	doublefree(g_tool.vars.hold);
 }
 
-void	chk_err(char *s, int fd)
+void	chk_err(char *s)
 {
 	void	*xpm_ptr;
 	int		h[2];
@@ -69,10 +69,9 @@ void	affect_xpm(void *xpm_ptr)
 		ta_sir("double type of element");
 }
 
-void	chk_resolution(char *s, int fd)
+void	chk_resolution(char *s)
 {
 	int		i;
-	int		j;
 	char	**str;
 
 	i = 0;
@@ -87,6 +86,7 @@ void	chk_resolution(char *s, int fd)
 			g_tool.xa = ft_atoi(str[1]);
 			g_tool.ya = ft_atoi(str[2]);
 			g_tool.resflag = 1;
+			doublefree(str);
 			return ;
 		}
 		else
@@ -95,7 +95,7 @@ void	chk_resolution(char *s, int fd)
 	ta_sir("wrong resolution input");
 }
 
-void	other(char *s, int fd)
+void	other(char *s)
 {
 	if (s[0] == '\0' && g_tool.readingmap)
 		ta_sir("there is a new line while or after reading the map");

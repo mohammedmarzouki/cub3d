@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw3d.c                                           :+:      :+:    :+:   */
+/*   drawdim.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 16:16:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/31 10:10:46 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2021/01/11 17:35:16 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,15 +94,5 @@ void	put_texture(float x, float y)
 		}
 	}
 	else
-	{
-		y = (int)y % TS;
-		while (i < g_map.wh && inc < (g_map.txth - 1) && (top < g_tool.ya))
-		{
-			g_screen[(top * g_tool.xa + g_tool.cntplyr)] =
-				g_map.txt[(int)inc * g_map.txtw + (int)y];
-			inc += hold;
-			i++;
-			top++;
-		}
-	}
+		vertic(y, top, hold);
 }

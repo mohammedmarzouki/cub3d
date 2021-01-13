@@ -6,13 +6,13 @@
 #    By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/12 12:28:14 by mmarzouk          #+#    #+#              #
-#    Updated: 2020/12/06 13:06:19 by mmarzouk         ###   ########.fr        #
+#    Updated: 2021/01/11 16:13:48 by mmarzouk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 NAME = cub3D
-WWWW = -Wall -Wextra -Werror
+WWW = -Wall -Wextra -Werror
 MLX = /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
 SRC = assets/drawdim.c assets/drawmap2d.c assets/err_handle1.c \
 	assets/err_handle2.c assets/field_of_view.c assets/ft_atoi.c assets/ft_gnl.c \
@@ -35,3 +35,4 @@ fclean: clean
 	@rm -rf cub3D
 
 re: fclean all
+		

@@ -41,7 +41,7 @@ void	handling_map(int i)
 	big_len = ft_strlen(g_map.map[i]);
 	while (g_map.map[i])
 	{
-		if (big_len < ft_strlen(g_map.map[i]))
+		if (big_len < (int)ft_strlen(g_map.map[i]))
 			big_len = ft_strlen(g_map.map[i]);
 		i++;
 	}

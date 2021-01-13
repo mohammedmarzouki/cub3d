@@ -1,43 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   screenshot.c                                       :+:      :+:    :+:   */
+/*   make_bmp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmarzouk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/10 09:25:57 by mmarzouk          #+#    #+#             */
-/*   Updated: 2021/01/10 09:26:00 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2021/01/11 18:13:55 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-char *make_header(t_header *values)
+char	*make_header(t_header *values)
 {
-    char *header;
-    int i;
-    if(!(header = malloc(54)))
-        ta_sir("allocation failed");
-    ft_memset(header,0,54);
-    values->width_in_bytes = (g_tool.xa * 24 + 31) / 32 * 4;
-    values->image_size = values->width_in_bytes * g_tool.ya;
-    ft_memcpy(header,"BM",2);
-    i = values->image_size + 54;
-    ft_memcpy(header + 2,&i,4);
-    i = 54;
+	char	*header;
+	int		i;
 
-    ft_memcpy(header + 10,&i,4);
-    i = 40;
-    ft_memcpy(header + 14,&i,4);
-    ft_memcpy(header + 18,&g_tool.xa,4);
-    ft_memcpy(header + 22,&g_tool.ya,4);
-    i = 1;
-    ft_memcpy(header + 26,&i,2);
-    i = 24;
-    ft_memcpy(header + 28,&i,2);
-    i = (((g_tool.xa * 24)+31)/32) * 4 ;
-    ft_memcpy(header + 34,&i,4);
-    return (header);
+	if (!(header = malloc(54)))
+		ta_sir("allocation failed");
+	ft_memset(header, 0, 54);
+	values->width_in_bytes = (g_tool.xa * 24 + 31) / 32 * 4;
+	values->image_size = values->width_in_bytes * g_tool.ya;
+	ft_memcpy(header, "BM", 2);
+	i = values->image_size + 54;
+	ft_memcpy(header + 2, &i, 4);
+	i = 54;
+	ft_memcpy(header + 10, &i, 4);
+	i = 40;
+	ft_memcpy(header + 14, &i, 4);
+	ft_memcpy(header + 18, &g_tool.xa, 4);
+	ft_memcpy(header + 22, &g_tool.ya, 4);
+	i = 1;
+	ft_memcpy(header + 26, &i, 2);
+	i = 24;
+	ft_memcpy(header + 28, &i, 2);
+	i = (((g_tool.xa * 24) + 31) / 32) * 4;
+	ft_memcpy(header + 34, &i, 4);
+	return (header);
 }
 
 int		*hex_to_rgb(int hex)
@@ -51,9 +51,9 @@ int		*hex_to_rgb(int hex)
 	return (rgb);
 }
 
-char *make_image(t_header *values)
+char	*make_image(t_header *values)
 {
-    char	*buf;
+	char	*buf;
 	int		i;
 	int		j;
 	int		*colors;
@@ -77,19 +77,19 @@ char *make_image(t_header *values)
 	}
 	return (buf);
 }
-void			make_a_bmp(void)
-{
-    t_header values;
-    char *header;
-    char *img;
-    int fd;
 
-    header = make_header(&values);
-    img = make_image(&values);
-    fd = open("./screenshot.bmp", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR);
-    write(fd, header, 54);
+void	make_a_bmp(void)
+{
+	t_header	values;
+	char		*header;
+	char		*img;
+	int			fd;
+
+	header = make_header(&values);
+	img = make_image(&values);
+	fd = open("./screenshot.bmp", O_WRONLY | O_CREAT, 0x1A4);
+	write(fd, header, 54);
 	write(fd, img, values.image_size);
 	free(header);
 	free(img);
-    
 }

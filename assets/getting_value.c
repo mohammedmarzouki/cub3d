@@ -6,13 +6,13 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 07:27:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2020/12/04 14:53:12 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2021/01/13 14:11:40 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-void	affect_coulour(char **colour, char c, char **hold)
+void	affect_coulour(char **colour, char c)
 {
 	int i;
 
@@ -77,20 +77,17 @@ void	save_flag(char *s)
 	g_tool.save = 1;
 }
 
-int		same(char *s1,char *s2)
+int		same(char *s1, char *s2)
 {
-	int i;
-	int j;
-
-	if(!s1 && !s2)
+	if (!s1 && !s2)
 		return (1);
 	if (!s1 || !s2)
 		return (0);
-	if(ft_strlen(s1) != ft_strlen(s2))
+	if (ft_strlen(s1) != ft_strlen(s2))
 		return (0);
-	while(*s1)
+	while (*s1)
 	{
-		if(*s1 != *s2)
+		if (*s1 != *s2)
 			return (0);
 		s1++;
 		s2++;
