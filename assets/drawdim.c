@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 16:16:16 by mmarzouk          #+#    #+#             */
-/*   Updated: 2021/01/11 17:35:16 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2021/01/13 14:21:47 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,5 @@ void	put_texture(float x, float y)
 		}
 	}
 	else
-		vertic(y, top, hold);
+		vertic(y, top, hold, inc);
 }

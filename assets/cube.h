@@ -6,7 +6,7 @@
 /*   By: mmarzouk <mmarzouk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 16:13:21 by mmarzouk          #+#    #+#             */
-/*   Updated: 2021/01/11 17:35:00 by mmarzouk         ###   ########.fr       */
+/*   Updated: 2021/01/13 14:22:22 by mmarzouk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,5 @@ char			*ft_strjoi(char const *s1, char const *s2);
 char			*ft_strch(const char *str, int c);
 char			*ft_subst(char const *s, unsigned int start, size_t len);
 int				get_next_line(int fd, char **line);
-void			vertic(float y, int top, float hold);
+void			vertic(float y, int top, float hold, float inc);
 #endif
